@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="kenjiro-osx.local" name="com.gdsfeel.util.ArchiverTest" tests="2" time="3.447" timestamp="2009-06-22T13:30:34">
+  <properties>
+    <property name="libs.JavaMail.javadoc" value="/Library/Java/javamail-1.4.2/docs" />
+    <property name="netbeans.autoupdate.country" value="JP" />
+    <property name="javac.test.classpath" value="/Library/Java/commons-lang-2.4/commons-lang-2.4.jar:/Library/Java/commons-logging-1.1.1/commons-logging-1.1.1.jar:/Library/Java/commons-io-1.4/commons-io-1.4.jar:/Library/Java/commons-collections-3.2.1/commons-collections-3.2.1.jar:/Library/Java/commons-configuration-1.6/commons-configuration-1.6.jar:/Library/Java/jakarta-regexp-1.5/jakarta-regexp-1.5.jar:build/classes:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9/modules/ext/junit-4.5.jar" />
+    <property name="libs.JavaFXUserLib.src" value="" />
+    <property name="libs.commons-collections.src" value="/Library/Java/commons-collections-3.2.1/commons-collections-3.2.1-sources.jar" />
+    <property name="org.openide.TopManager.GUI" value="true" />
+    <property name="libs.theme-default.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/defaulttheme.jar" />
+    <property name="libs.junit.javadoc" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/docs/junit-3.8.2-api.zip" />
+    <property name="libs.rowset-ri.javadoc" value="/Users/kenjiro/.netbeans/6.5/docs/rowset-doc.zip" />
+    <property name="libs.Wicket.maven-pom" value="" />
+    <property name="ant.core.lib" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/ant/lib/ant.jar" />
+    <property name="libs.swing-app-framework.src" value="" />
+    <property name="javadoc.windowtitle" value="" />
+    <property name="libs.toplink.classpath" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/toplink/toplink-essentials.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/toplink/toplink-essentials-agent.jar" />
+    <property name="user.dir" value="/Users/kenjiro/Documents/NetBeansProjects/nbp/GdsFeel" />
+    <property name="com.apple.mrj.application.apple.menu.about.name" value="NetBeans" />
+    <property name="libs.theme-default-green.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/defaulttheme-green.jar" />
+    <property name="jnlp.codebase.url" value="file:/C:/Documents%20and%20Settings/kenjiro/My%20Documents/NetBeansProjects/nbp/GdsFeel/dist" />
+    <property name="libs.hibernate-persistence.javadoc" value="" />
+    <property name="java.vm.version" value="1.5.0_16-133" />
+    <property name="libs.jstl11.maven-pom" value="" />
+    <property name="libs.jsf-runtime.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_1_02/jsf-api.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_1_02/jsf-impl.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_1_02/commons-beanutils.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_1_02/commons-collections.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_1_02/commons-digester.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_1_02/commons-logging.jar" />
+    <property name="libs.MySQLDriver.classpath" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/ide10/modules/ext/mysql-connector-java-5.1.6-bin.jar" />
+    <property name="libs.jstl11.src" value="" />
+    <property name="javadoc.notree" value="false" />
+    <property name="netbeans.autoupdate.version" value="1.23" />
+    <property name="libs.hibernate-support.maven-pom" value="" />
+    <property name="libs.hibernate-support.javadoc" value="" />
+    <property name="libs.jaxrpc16.src" value="" />
+    <property name="libs.exceptionhandler-runtime.maven-pom" value="" />
+    <property name="jdk.home" value="/System/Library/Frameworks/JavaVM.framework/Versions/1.5/Home" />
+    <property name="libs.javac-api.src" value="" />
+    <property name="wsclientuptodate.classpath" value="/Users/kenjiro/.netbeans/6.5/ant/extra/wsclientuptodate.jar" />
+    <property name="javadoc.noindex" value="false" />
+    <property name="libs.theme-default-green.runtime" value="/Users/kenjiro/.netbeans/6.5/modules/ext/defaulttheme-green.jar" />
+    <property name="sun.os.patch.level" value="unknown" />
+    <property name="libs.Base.javadoc" value="/Users/kenjiro/Documents/NetBeans-Projects/Base.nbp/dist/javadoc" />
+    <property name="libs.theme-default-gray.runtime" value="/Users/kenjiro/.netbeans/6.5/modules/ext/defaulttheme-gray.jar" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="libs.commons-net.src" value="/Library/Java/commons-net-2.0/commons-net-2.0-sources.jar" />
+    <property name="nb.show.statistics.ui" value="usageStatisticsEnabled" />
+    <property name="libs.jsf-extensions.maven-pom" value="" />
+    <property name="libs.jdbcsupport-runtime.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/sqlx.jar" />
+    <property name="netbeans.autoupdate.variant" value="" />
+    <property name="have.tests" value="true" />
+    <property name="libs.commons-httpclient.javadoc" value="/Library/Java/commons-httpclient-3.1/docs" />
+    <property name="libs.jdbcsupport-designtime.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/sqlx.jar" />
+    <property name="org.xml.sax.driver" value="com.sun.org.apache.xerces.internal.parsers.SAXParser" />
+    <property name="libs.commons-cli.src" value="" />
+    <property name="libs.javac-api.javadoc" value="" />
+    <property name="os.name" value="Mac OS X" />
+    <property name="libs.javafx-fxd-runtime.javadoc" value="/Users/kenjiro/.netbeans/6.5/modules/ext/fxd/doc/javafx-fxd-1.0-javadoc.zip" />
+    <property name="libs.beans-binding.classpath" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/beansbinding-1.2.1.jar" />
+    <property name="libs.commons-dbutils.src" value="" />
+    <property name="libs.jaxrpc16.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/jaxrpc16/activation.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jaxrpc16/FastInfoset.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jaxrpc16/jaxp-api.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jaxrpc16/jax-qname.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jaxrpc16/jaxrpc-api.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jaxrpc16/jaxrpc-impl.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jaxrpc16/jaxrpc-spi.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jaxrpc16/jsr173_api.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jaxrpc16/mail.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jaxrpc16/relaxngDatatype.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jaxrpc16/saaj-api.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jaxrpc16/saaj-impl.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jaxrpc16/xsdlib.jar" />
+    <property name="libs.AppFramework.classpath" value="/Users/kenjiro/Documents/NetBeans-Projects/AppFramework.nbp/dist/AppFramework.jar" />
+    <property name="libs.transform.javadoc" value="/Library/Java/transform-2.1.5/doc" />
+    <property name="libs.Jasypt.classpath" value="/Users/kenjiro/.netbeans/6.5/libs/jasypt-1.3.1.jar:/Users/kenjiro/.netbeans/6.5/libs/commons-lang-2.3.jar:/Users/kenjiro/.netbeans/6.5/libs/commons-codec-1.3.jar:/Users/kenjiro/.netbeans/6.5/libs/icu4j_3_6_1.jar" />
+    <property name="libs.restapi.javadoc" value="/Users/kenjiro/.netbeans/6.5/docs/jsr311-api-doc.zip" />
+    <property name="mrj.version" value="1050.1.5.0_16-284" />
+    <property name="libs.JWSAntTasks.maven-pom" value="" />
+    <property name="libs.axis2.javadoc" value="" />
+    <property name="libs.commons-math.maven-pom" value="" />
+    <property name="libs.restapi.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/rest/jsr311-api.jar" />
+    <property name="java.vendor.url.bug" value="http://bugreport.apple.com/" />
+    <property name="libs.jaxb.maven-pom" value="" />
+    <property name="os.arch" value="ppc" />
+    <property name="user.name" value="kenjiro" />
+    <property name="libs.jsf12.javadoc" value="/Users/kenjiro/.netbeans/6.5/docs/javaee5-doc-api.zip" />
+    <property name="manifest.available+main.class" value="true" />
+    <property name="libs.swing-layout.maven-pom" value="" />
+    <property name="build.classes.dir" value="build/classes" />
+    <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
+    <property name="libs.commons-io.javadoc" value="/Library/Java/commons-io-1.4/docs" />
+    <property name="jnlp.descriptor" value="application" />
+    <property name="build.sysclasspath" value="ignore" />
+    <property name="libs.AppFramework.src" value="/Users/kenjiro/Documents/NetBeans-Projects/AppFramework.nbp/src" />
+    <property name="libs.JavaMail.classpath" value="/Library/Java/javamail-1.4.2/mail.jar:/Library/Java/javamail-1.4.2/lib/dsn.jar:/Library/Java/javamail-1.4.2/lib/imap.jar:/Library/Java/javamail-1.4.2/lib/mailapi.jar:/Library/Java/javamail-1.4.2/lib/pop3.jar:/Library/Java/javamail-1.4.2/lib/smtp.jar" />
+    <property name="libs.skmail.src" value="/Library/Java/skmail-0.5-20040712/skmail/src" />
+    <property name="libs.jaxws21.javadoc" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/docs/jaxws-2_1-api-doc.zip" />
+    <property name="includes" value="**" />
+    <property name="libs.axis2.maven-pom" value="" />
+    <property name="libs.AppFramework.javadoc" value="/Users/kenjiro/Documents/NetBeans-Projects/AppFramework.nbp/AppFramework-0.15-doc.zip" />
+    <property name="libs.MySQL.src" value="/Library/Java/mysql-connector-java-5.0.6/src" />
+    <property name="platforms.default_fx_platform.java" value="/System/Library/Frameworks/JavaVM.framework/Versions/1.5/Home/bin/java" />
+    <property name="user.country" value="JP" />
+    <property name="manifest.file" value="manifest.mf" />
+    <property name="libs.jstl11.javadoc" value="/Users/kenjiro/.netbeans/6.5/docs/javaee5-doc-api.zip" />
+    <property name="libs.skmail.javadoc" value="" />
+    <property name="javadoc.encoding" value="UTF-8" />
+    <property name="javac.classpath" value="/Library/Java/commons-lang-2.4/commons-lang-2.4.jar:/Library/Java/commons-logging-1.1.1/commons-logging-1.1.1.jar:/Library/Java/commons-io-1.4/commons-io-1.4.jar:/Library/Java/commons-collections-3.2.1/commons-collections-3.2.1.jar:/Library/Java/commons-configuration-1.6/commons-configuration-1.6.jar:/Library/Java/jakarta-regexp-1.5/jakarta-regexp-1.5.jar" />
+    <property name="libs.jsfsupport-designtime.javadoc" value="/Users/kenjiro/.netbeans/6.5/docs/appbase-doc.zip:/Users/kenjiro/.netbeans/6.5/docs/dataprovider-doc.zip:/Users/kenjiro/.netbeans/6.5/docs/jsfcl-doc.zip" />
+    <property name="libs.jakarta-regexp.maven-pom" value="" />
+    <property name="libs.commons-lang.src" value="/Library/Java/commons-lang-2.4/commons-lang-2.4-sources.jar" />
+    <property name="debug-transport" value="dt_socket" />
+    <property name="netbeans.system_http_non_proxy_hosts" value="" />
+    <property name="libs.Wicket.src" value="/Users/kenjiro/.netbeans/6.5/sources/wicket-1.3.0-sources.jar:/Users/kenjiro/.netbeans/6.5/sources/wicket-auth-roles-1.3.0-sources.jar:/Users/kenjiro/.netbeans/6.5/sources/wicket-extensions-1.3.0-sources.jar" />
+    <property name="netbeans.home" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9" />
+    <property name="build.compiler.emacs" value="true" />
+    <property name="application.desc" value="" />
+    <property name="libs.rowset-ri.maven-pom" value="" />
+    <property name="libs.ejb3-persistence.src" value="" />
+    <property name="libs.jdbcsupport-runtime.javadoc" value="" />
+    <property name="libs.apache-log4j.src" value="/Library/Java/apache-log4j-1.2.15/src" />
+    <property name="java.endorsed.dirs" value="/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/endorsed" />
+    <property name="libs.axis2.src" value="" />
+    <property name="netbeans.dynamic.classpath" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9/core/core.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9/core/org-openide-filesystems.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9/core/locale/core_ja.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9/core/locale/core_pt_BR.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9/core/locale/core_zh_CN.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9/core/locale/org-openide-filesystems_ja.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9/core/locale/org-openide-filesystems_pt_BR.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9/core/locale/org-openide-filesystems_zh_CN.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/nb6.5/core/org-netbeans-upgrader.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/nb6.5/core/locale/core_nb.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/nb6.5/core/locale/core_nb_ja.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/nb6.5/core/locale/core_nb_pt_BR.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/nb6.5/core/locale/core_nb_zh_CN.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/nb6.5/core/locale/org-netbeans-upgrader_ja.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/nb6.5/core/locale/org-netbeans-upgrader_pt_BR.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/nb6.5/core/locale/org-netbeans-upgrader_zh_CN.jar" />
+    <property name="libs.Wicket.javadoc" value="" />
+    <property name="jnlp.enabled" value="false" />
+    <property name="java.vm.specification.version" value="1.0" />
+    <property name="libs.commons-math.javadoc" value="/Library/Java/commons-math-1.2/docs" />
+    <property name="libs.commons-configuration.classpath" value="/Library/Java/commons-configuration-1.6/commons-configuration-1.6.jar" />
+    <property name="libs.commons-logging.javadoc" value="/Library/Java/commons-logging-1.1.1/commons-logging-1.1.1-javadoc.jar" />
+    <property name="libs.MySQL.maven-pom" value="" />
+    <property name="libs.JAF.javadoc" value="/Library/Java/jaf-1.1/docs" />
+    <property name="libs.commons-io.maven-pom" value="" />
+    <property name="platforms.JDK_1.6.home" value="/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home" />
+    <property name="libs.hibernate-persistence.classpath" value="/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/antlr-2.7.6.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/asm.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/asm-attrs.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/cglib-2.1.3.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/commons-collections-2.1.1.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/ide10/modules/ext/commons-logging-1.1.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/dom4j-1.6.1.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/ehcache-1.2.3.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/jdbc2_0-stdext.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/jta.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/hibernate3.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/hibernate-tools.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/hibernate-annotations.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/hibernate-commons-annotations.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/hibernate-entitymanager.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/javassist.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/ejb3-persistence.jar" />
+    <property name="libs.jaxws21.src" value="" />
+    <property name="application.title" value="GdsFeel" />
+    <property name="libs.swing-app-framework.classpath" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/appframework-1.0.3.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/swing-worker-1.1.jar" />
+    <property name="netbeans.autoupdate.language" value="ja" />
+    <property name="libs.Jasypt.javadoc" value="/Users/kenjiro/.netbeans/6.5/docs/jasypt-1.3.1-javadoc.jar" />
+    <property name="java.vendor" value="Apple Inc." />
+    <property name="platforms.JDK_1.6.compiler" value="modern" />
+    <property name="libs.commons-codec.javadoc" value="/Library/Java/commons-codec-1.3/docs" />
+    <property name="libs.commons-net.classpath" value="/Library/Java/commons-net-2.0/commons-net-2.0.jar:/Library/Java/commons-net-2.0/commons-net-ftp-2.0.jar" />
+    <property name="javac.debug" value="true" />
+    <property name="javadoc.splitindex" value="true" />
+    <property name="file.separator" value="/" />
+    <property name="libs.IdentityAntTasks.src" value="" />
+    <property name="libs.junit_4.maven-pom" value="" />
+    <property name="libs.f5Library.javadoc" value="" />
+    <property name="netbeans.buildnumber" value="200903060201" />
+    <property name="libs.JWSAntTasks.javadoc" value="" />
+    <property name="libs.webui-runtime.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/webui.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/commons-fileupload-1.0.jar" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="libs.junit.classpath" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/junit-3.8.2.jar" />
+    <property name="libs.jaxb.javadoc" value="" />
+    <property name="libs.struts.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/struts/antlr.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/struts/commons-beanutils.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/struts/commons-digester.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/struts/commons-logging.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/struts/commons-validator.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/struts/jakarta-oro.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/struts/struts.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/commons-fileupload-1.0.jar" />
+    <property name="libs.woodstock-theme-default.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/webui-jsf-suntheme.jar" />
+    <property name="ant.home" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/ant" />
+    <property name="libs.junit_4.src" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/docs/junit-4.5-src.jar" />
+    <property name="libs.absolutelayout.maven-pom" value="" />
+    <property name="libs.commons-dbutils.javadoc" value="/Library/Java/commons-dbutils-1.1/docs" />
+    <property name="libs.commons-lang.maven-pom" value="" />
+    <property name="ant.java.version" value="1.5" />
+    <property name="java.library.path" value=".:/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java" />
+    <property name="javadoc.author" value="false" />
+    <property name="libs.IdentityAntTasks.classpath" value="/Users/kenjiro/.netbeans/6.5/ant/nblib/org-netbeans-modules-identity-ant.jar:/Users/kenjiro/.netbeans/6.5/modules/org-netbeans-modules-identity-profile-api.jar" />
+    <property name="java.util.logging.config.class" value="org.netbeans.core.startup.TopLogging" />
+    <property name="libs.PostgreSQLDriver.src" value="" />
+    <property name="libs.JAF.classpath" value="/Library/Java/jaf-1.1/activation.jar" />
+    <property name="libs.jaxrpc16.javadoc" value="" />
+    <property name="sun.arch.data.model" value="32" />
+    <property name="basedir" value="/Users/kenjiro/Documents/NetBeansProjects/nbp/GdsFeel" />
+    <property name="jar.compress" value="false" />
+    <property name="libs.commons-collections.classpath" value="/Library/Java/commons-collections-3.2.1/commons-collections-3.2.1.jar" />
+    <property name="auxiliary.org-netbeans-modules-editor-indent.CodeStyle.project.text-limit-width" value="80" />
+    <property name="libs.jakarta-regexp.src" value="/Library/Java/jakarta-regexp-1.5/src" />
+    <property name="libs.jstl11.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/standard.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jstl.jar" />
+    <property name="libs.JavaFXUserLib.classpath" value="/Users/kenjiro/.netbeans/6.5/javafx-sdk/samples/SimpleVideoPlayer/webstart/lib/mediacomponent.jar" />
+    <property name="libs.jsf1102.maven-pom" value="" />
+    <property name="path.separator" value=":" />
+    <property name="sun.io.unicode.encoding" value="UnicodeBig" />
+    <property name="libs.jaxws21.classpath" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/ide10/modules/ext/jaxb/activation.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/ide10/modules/ext/jaxb/api/jaxb-api.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/ide10/modules/ext/jaxb/jaxb-impl.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/ide10/modules/ext/jaxb/jaxb-xjc.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/ide10/modules/ext/jaxb/api/jsr173_api.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/jaxws21/FastInfoset.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/jaxws21/http.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/jaxws21/api/jaxws-api.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/jaxws21/jaxws-rt.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/jaxws21/jaxws-tools.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/jaxws21/api/jsr181-api.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/jaxws21/api/jsr250-api.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/jaxws21/mimepull.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/jaxws21/resolver.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/jaxws21/api/saaj-api.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/jaxws21/saaj-impl.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/jaxws21/sjsxp.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/jaxws21/stax-ex.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/jaxws21/streambuffer.jar" />
+    <property name="libs.WicketSecurity.classpath" value="/Users/kenjiro/.netbeans/6.5/libs/swarm-0.1-SNAPSHOT.jar:/Users/kenjiro/.netbeans/6.5/libs/wasp-0.1-SNAPSHOT.jar" />
+    <property name="libs.struts.src" value="" />
+    <property name="libs.commons-math.src" value="/Library/Java/commons-math-1.2/commons-math-1.2-sources.jar" />
+    <property name="ant.file.GdsFeel-impl" value="/Users/kenjiro/Documents/NetBeansProjects/nbp/GdsFeel/nbproject/build-impl.xml" />
+    <property name="apple.awt.graphics.UseQuartz" value="false" />
+    <property name="libs.commons-dbutils.classpath" value="/Library/Java/commons-dbutils-1.1/commons-dbutils-1.1.jar" />
+    <property name="user.language" value="ja" />
+    <property name="libs.JavaFXUserLib.javadoc" value="/Users/kenjiro/.netbeans/6.5/javafx-sdk/docs/api" />
+    <property name="libs.dojo.scriptpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/javascript/dojo-1.1.1.zip" />
+    <property name="libs.spring-framework.classpath" value="/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/ide10/modules/ext/commons-logging-1.1.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/cglib-2.2.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/spring/spring-2.5.jar" />
+    <property name="application.vendor" value="gdsfeel.com" />
+    <property name="manifest.available" value="true" />
+    <property name="libs.commons-codec.classpath" value="/Library/Java/commons-codec-1.3/commons-codec-1.3.jar" />
+    <property name="run.test.classpath" value="/Library/Java/commons-lang-2.4/commons-lang-2.4.jar:/Library/Java/commons-logging-1.1.1/commons-logging-1.1.1.jar:/Library/Java/commons-io-1.4/commons-io-1.4.jar:/Library/Java/commons-collections-3.2.1/commons-collections-3.2.1.jar:/Library/Java/commons-configuration-1.6/commons-configuration-1.6.jar:/Library/Java/jakarta-regexp-1.5/jakarta-regexp-1.5.jar:build/classes:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9/modules/ext/junit-4.5.jar:build/test/classes" />
+    <property name="useJavaUtilZip" value="true" />
+    <property name="libs.swing-layout.javadoc" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9/docs/swing-layout-1.0.3-doc.zip" />
+    <property name="libs.skmail.classpath" value="/Library/Java/skmail-0.5-20040712/skmail/lib/activation.jar:/Library/Java/skmail-0.5-20040712/skmail/lib/mailapi.jar:/Library/Java/skmail-0.5-20040712/skmail/lib/skmail.jar:/Library/Java/skmail-0.5-20040712/skmail/lib/skutility.jar:/Library/Java/skmail-0.5-20040712/skmail/lib/smtp.jar" />
+    <property name="libs.swing-app-framework.javadoc" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/docs/appframework-1.0.3-doc.zip" />
+    <property name="libs.ejb3-persistence.maven-pom" value="" />
+    <property name="gopherProxySet" value="false" />
+    <property name="libs.commons-email.classpath" value="/Library/Java/commons-email-1.1/commons-email-1.1.jar" />
+    <property name="https.nonProxyHosts" value="localhost|127.0.0.1|kenjiro-osx.local" />
+    <property name="libs.PostgreSQLDriver.maven-pom" value="" />
+    <property name="java.class.version" value="49.0" />
+    <property name="libs.MySQL.javadoc" value="" />
+    <property name="libs.apache-log4j.maven-pom" value="" />
+    <property name="libs.javafx-fxd-runtime.maven-pom" value="" />
+    <property name="netbeans.system_http_proxy" value="DIRECT" />
+    <property name="user.properties.file" value="/Users/kenjiro/.netbeans/6.5/build.properties" />
+    <property name="platforms.default_fx_platform.bootclasspath" value="/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/shared/javafxc.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/shared/javafxrt.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/rt15.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/javafx-geom.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/javafx-ui-common.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/javafx-ui-desktop.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/javafx-ui-swing.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/fxdloader.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/websvc.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/javafx-ui-controls.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/javafx-ui-charts.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/javafx-common.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/javafx-io.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/eula.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/javafx-anim.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/decora-runtime.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/decora-sse.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/decora-d3d.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/decora-j2d-rsl.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/decora-ogl.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/decora-j2d-jogl.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/javafx-sg-common.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/javafx-sg-swing.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/jogl.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/gluegen-rt.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/jmc.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/desktop/script-api.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/mobile/javafxapi-cldc.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/mobile/cldc_1.1.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/mobile/midp_2.0.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/mobile/jsr120_1.1.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/mobile/jsr135_1.1.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/mobile/jsr172_1.0.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/mobile/jsr177_1.0.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/mobile/jsr179_1.0.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/mobile/jsr184_1.1.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/mobile/jsr234_1.0.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/mobile/jsr256_1.1.jar:/Users/kenjiro/.netbeans/6.5/javafx-sdk/lib/mobile/jsr75_1.0.jar" />
+    <property name="libs.spring-framework.src" value="" />
+    <property name="libs.javac-api.maven-pom" value="" />
+    <property name="libs.f5Library.maven-pom" value="" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="sun.cpu.endian" value="big" />
+    <property name="libs.JWSAntTasks.classpath" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/ant/extra/org-netbeans-modules-javawebstart-anttasks.jar" />
+    <property name="platforms.default_fx_platform.compiler" value="modern" />
+    <property name="libs.jsfsupport-designtime.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/jsfcl.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/appbase.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/dataprovider.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/sqlx.jar" />
+    <property name="libs.scriptaculous.scriptpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/javascript/scriptaculous-js-1.8.1.zip" />
+    <property name="version-output" value="java version &quot;1.5" />
+    <property name="javadoc.preview" value="true" />
+    <property name="auxiliary.org-netbeans-modules-editor-indent.CodeStyle.usedProfile" value="default" />
+    <property name="nbplatform.default.harness.dir" value="/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/harness" />
+    <property name="java.home" value="/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Home" />
+    <property name="libs.jakarta-regexp.javadoc" value="/Library/Java/jakarta-regexp-1.5/docs" />
+    <property name="libs.spring-webmvc.src" value="" />
+    <property name="debug.test.classpath" value="/Library/Java/commons-lang-2.4/commons-lang-2.4.jar:/Library/Java/commons-logging-1.1.1/commons-logging-1.1.1.jar:/Library/Java/commons-io-1.4/commons-io-1.4.jar:/Library/Java/commons-collections-3.2.1/commons-collections-3.2.1.jar:/Library/Java/commons-configuration-1.6/commons-configuration-1.6.jar:/Library/Java/jakarta-regexp-1.5/jakarta-regexp-1.5.jar:build/classes:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9/modules/ext/junit-4.5.jar:build/test/classes" />
+    <property name="netbeans.importclass" value="org.netbeans.upgrade.AutoUpgrade" />
+    <property name="libs.webui-designtime.src" value="/Users/kenjiro/.netbeans/6.5/docs/webui-src.zip" />
+    <property name="org.openide.TopManager" value="org.netbeans.core.NonGui" />
+    <property name="libs.toplink.maven-pom" value="" />
+    <property name="libs.PostgreSQLDriver.javadoc" value="" />
+    <property name="libs.restlib.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/rest/jersey.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/rest/http.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/rest/wadl2java.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/rest/rome-0.9.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/rest/jdom-1.0.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/rest/jettison-1.0-RC1.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/rest/asm-3.1.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/rest/grizzly-servlet-webserver-1.7.3.2.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/rest/jersey-spring.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/ide10/modules/ext/jaxb/activation.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/ide10/modules/ext/jaxb/api/jaxb-api.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/ide10/modules/ext/jaxb/jaxb-impl.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/ide10/modules/ext/jaxb/jaxb-xjc.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/ide10/modules/ext/jaxb/api/jsr173_api.jar" />
+    <property name="libs.exceptionhandler-runtime.javadoc" value="" />
+    <property name="libs.commons-collections.javadoc" value="/Library/Java/commons-collections-3.2.1/apidocs" />
+    <property name="libs.jsfsupport-runtime.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/jsfcl.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/appbase.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/dataprovider.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/sqlx.jar" />
+    <property name="libs.MySQLDriver.maven-pom" value="" />
+    <property name="http.nonProxyHosts" value="localhost|127.0.0.1|kenjiro-osx.local" />
+    <property name="libs.junit_4.javadoc" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/docs/junit-4.5-api.zip" />
+    <property name="libs.spring-webmvc.javadoc" value="" />
+    <property name="libs.toplink.src" value="" />
+    <property name="libs.webui.javadoc" value="/Users/kenjiro/.netbeans/6.5/docs/webui-doc.zip" />
+    <property name="libs.jsf12-support.javadoc" value="/Users/kenjiro/.netbeans/6.5/docs/appbase-doc.zip:/Users/kenjiro/.netbeans/6.5/docs/dataprovider-doc.zip:/Users/kenjiro/.netbeans/6.5/docs/jsfcl-doc.zip" />
+    <property name="run.classpath" value="/Library/Java/commons-lang-2.4/commons-lang-2.4.jar:/Library/Java/commons-logging-1.1.1/commons-logging-1.1.1.jar:/Library/Java/commons-io-1.4/commons-io-1.4.jar:/Library/Java/commons-collections-3.2.1/commons-collections-3.2.1.jar:/Library/Java/commons-configuration-1.6/commons-configuration-1.6.jar:/Library/Java/jakarta-regexp-1.5/jakarta-regexp-1.5.jar:build/classes" />
+    <property name="libs.hibernate-support.src" value="" />
+    <property name="libs.theme-default.runtime" value="/Users/kenjiro/.netbeans/6.5/modules/ext/defaulttheme.jar" />
+    <property name="sun.awt.datatransfer.timeout" value="1000" />
+    <property name="libs.swing-worker.src" value="/Library/Java/swing-worker/swing-worker-src.zip" />
+    <property name="libs.swing-worker.classpath" value="/Library/Java/swing-worker/swing-worker.jar" />
+    <property name="libs.jdbcsupport-runtime.maven-pom" value="" />
+    <property name="libs.WicketSecurity.javadoc" value="" />
+    <property name="libs.restapi.src" value="" />
+    <property name="libs.commons-io.classpath" value="/Library/Java/commons-io-1.4/commons-io-1.4.jar" />
+    <property name="sun.management.compiler" value="HotSpot Client Compiler" />
+    <property name="libs.commons-configuration.src" value="/Library/Java/commons-configuration-1.6/commons-configuration-1.6-sources.jar" />
+    <property name="javac.deprecation" value="false" />
+    <property name="javadoc.use" value="true" />
+    <property name="libs.jdbcsupport-runtime.src" value="" />
+    <property name="libs.jdbcsupport-designtime.maven-pom" value="" />
+    <property name="libs.theme-default-gray.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/defaulttheme-gray.jar" />
+    <property name="sun.java2d.noddraw" value="true" />
+    <property name="libs.transform.src" value="/Library/Java/transform-2.1.5/src" />
+    <property name="libs.spring-webmvc.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/spring/spring-webmvc-2.5.jar" />
+    <property name="javac.compilerargs" value="" />
+    <property name="ant.file" value="/Users/kenjiro/Documents/NetBeansProjects/nbp/GdsFeel/build.xml" />
+    <property name="libs.jaxrpc16.maven-pom" value="" />
+    <property name="libs.beans-binding.maven-pom" value="" />
+    <property name="libs.AppFramework.maven-pom" value="" />
+    <property name="jnlp.codebase.type" value="local" />
+    <property name="libs.jsf12.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_2/commons-beanutils.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_2/commons-collections.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_2/commons-digester.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_2/commons-logging.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_2/jsf-api.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_2/jsf-impl.jar" />
+    <property name="libs.apache-log4j.javadoc" value="" />
+    <property name="libs.commons-httpclient.classpath" value="/Library/Java/commons-httpclient-3.1/commons-httpclient-3.1.jar" />
+    <property name="libs.Jasypt.maven-pom" value="" />
+    <property name="sun.awt.exception.handler" value="org.netbeans.core.startup.TopLogging$AWTHandler" />
+    <property name="libs.restapi.maven-pom" value="" />
+    <property name="libs.beans-binding.src" value="" />
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc." />
+    <property name="libs.swing-layout.src" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9/docs/swing-layout-1.0.3-src.zip" />
+    <property name="libs.webui.src" value="/Users/kenjiro/.netbeans/6.5/docs/webui-src.zip" />
+    <property name="libs.commons-email.src" value="/Library/Java/commons-email-1.1/commons-email-1.1-sources.jar" />
+    <property name="org.openide.major.version" value="IDE/1" />
+    <property name="java.vm.name" value="Java HotSpot(TM) Client VM" />
+    <property name="libs.f5Library.src" value="/Users/kenjiro/Documents/NBProjects/f5.nbp/src" />
+    <property name="netbeans.user" value="/Users/kenjiro/.netbeans/6.5" />
+    <property name="javadoc.additionalparam" value="" />
+    <property name="jnlp.offline-allowed" value="false" />
+    <property name="java.io.tmpdir" value="/tmp" />
+    <property name="java.vendor.url" value="http://www.apple.com/" />
+    <property name="libs.prototype.scriptpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/javascript/prototype-1.6.0.2.zip" />
+    <property name="scala.specification.version" value="2.7.3.final" />
+    <property name="jspc.classpath" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/ant/lib/ant.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/servlet2.5-jsp2.1-api.jar:${j2ee.platform.classpath}:/Users/kenjiro/.netbeans/6.5/modules/ext/glassfish-jspparser-2.0.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/glassfish-logging-2.0.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/ide10/modules/ext/commons-logging-1.1.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/ant/lib/ant-launcher.jar" />
+    <property name="libs.JAF.src" value="" />
+    <property name="libs.jsf-extensions.src" value="" />
+    <property name="libs.JavaMail.maven-pom" value="" />
+    <property name="libs.transform.classpath" value="/Library/Java/transform-2.1.5/transform.jar" />
+    <property name="sun.boot.library.path" value="/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Libraries" />
+    <property name="have.sources" value="true" />
+    <property name="debug.classpath" value="/Library/Java/commons-lang-2.4/commons-lang-2.4.jar:/Library/Java/commons-logging-1.1.1/commons-logging-1.1.1.jar:/Library/Java/commons-io-1.4/commons-io-1.4.jar:/Library/Java/commons-collections-3.2.1/commons-collections-3.2.1.jar:/Library/Java/commons-configuration-1.6/commons-configuration-1.6.jar:/Library/Java/jakarta-regexp-1.5/jakarta-regexp-1.5.jar:build/classes" />
+    <property name="libs.woodstock-theme-default.runtime" value="/Users/kenjiro/.netbeans/6.5/modules/ext/webui-jsf-suntheme.jar" />
+    <property name="libs.jsf-designtime.javadoc" value="/Users/kenjiro/.netbeans/6.5/docs/javaee5-doc-api.zip" />
+    <property name="javadoc.private" value="false" />
+    <property name="test.src.dir" value="test" />
+    <property name="meta.inf.dir" value="src/META-INF" />
+    <property name="javadoc.encoding.used" value="UTF-8" />
+    <property name="libs.commons-logging.maven-pom" value="" />
+    <property name="libs.Wicket.classpath" value="/Users/kenjiro/.netbeans/6.5/libs/wicket-1.4-rc1.jar:/Users/kenjiro/.netbeans/6.5/libs/wicket-auth-roles-1.4-rc1.jar:/Users/kenjiro/.netbeans/6.5/libs/wicket-extensions-1.4-rc1.jar:/Users/kenjiro/.netbeans/6.5/libs/slf4j-api-1.4.2.jar:/Users/kenjiro/.netbeans/6.5/libs/slf4j-jdk14-1.4.2.jar" />
+    <property name="dist.jar" value="dist/GdsFeel.jar" />
+    <property name="libs.commons-cli.maven-pom" value="" />
+    <property name="libs.commons-httpclient.src" value="" />
+    <property name="java.runtime.name" value="Java(TM) 2 Runtime Environment, Standard Edition" />
+    <property name="ant.project.name" value="GdsFeel" />
+    <property name="ant.file.GdsFeel" value="/Users/kenjiro/Documents/NetBeansProjects/nbp/GdsFeel/build.xml" />
+    <property name="netbeans.hash.code" value="unique=NB_JAVA07392fe0c-2ba8-4161-b3db-6a2cb825ee33_787a3026-4e2c-4b28-8f6d-030b92d1cff2" />
+    <property name="libs.jdbcsupport-designtime.javadoc" value="" />
+    <property name="sun.cpu.isalist" value="" />
+    <property name="libs.CopyLibs.javadoc" value="" />
+    <property name="org.openide.specification.version" value="6.2" />
+    <property name="libs.hibernate-support.classpath" value="/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/antlr-2.7.6.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/asm.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/asm-attrs.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/cglib-2.1.3.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/commons-collections-2.1.1.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/ide10/modules/ext/commons-logging-1.1.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/dom4j-1.6.1.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/ehcache-1.2.3.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/jdbc2_0-stdext.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/jta.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/hibernate3.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/hibernate-tools.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/hibernate-annotations.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/hibernate-commons-annotations.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/hibernate-entitymanager.jar:/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/javassist.jar" />
+    <property name="user.home" value="/Users/kenjiro" />
+    <property name="libs.exceptionhandler-runtime.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/errorhandler.jar" />
+    <property name="debug-args-line" value="-Xdebug" />
+    <property name="libs.commons-configuration.maven-pom" value="" />
+    <property name="libs.jsf-designtime.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_1_02/jsf-api.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_1_02/jsf-impl.jar" />
+    <property name="libs.JWSAntTasks.src" value="" />
+    <property name="libs.CopyLibs.maven-pom" value="" />
+    <property name="libs.absolutelayout.javadoc" value="" />
+    <property name="libs.hibernate-persistence.maven-pom" value="" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="libs.swing-app-framework.maven-pom" value="" />
+    <property name="libs.webui.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/webui.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/commons-fileupload-1.0.jar" />
+    <property name="libs.yahooui.scriptpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/javascript/yui-2.5.2.zip" />
+    <property name="libs.woodstock-components.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/webui-jsf.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/commons-fileupload-1.0.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/json-2.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-extensions-common-0.1.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-extensions-dynamic-faces-0.1.jar" />
+    <property name="libs.Base.maven-pom" value="" />
+    <property name="libs.jsf-extensions.javadoc" value="" />
+    <property name="libs.jsf-extensions.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-extensions-dynamic-faces-0.1.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-extensions-common-0.1.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_2/commons-logging.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/shale-remoting-1.0.4.jar" />
+    <property name="libs.jdbcsupport-designtime.src" value="" />
+    <property name="java.specification.vendor" value="Sun Microsystems Inc." />
+    <property name="libs.javac-api.classpath" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/javac-api-nb-7.0-b07.jar" />
+    <property name="libs.commons-net.maven-pom" value="" />
+    <property name="java.version" value="1.5.0_16" />
+    <property name="platforms.default_fx_platform.home" value="/System/Library/Frameworks/JavaVM.framework/Versions/1.5/Home" />
+    <property name="javadoc.version" value="false" />
+    <property name="libs.MySQLDriver.javadoc" value="" />
+    <property name="org.openide.version" value="deprecated" />
+    <property name="source.encoding" value="UTF-8" />
+    <property name="libs.commons-cli.javadoc" value="/Library/Java/commons-cli-1.1/docs" />
+    <property name="awt.nativeDoubleBuffering" value="true" />
+    <property name="libs.junit.maven-pom" value="" />
+    <property name="libs.jsf12-support.src" value="/Users/kenjiro/.netbeans/6.5/docs/appbase-src.zip:/Users/kenjiro/.netbeans/6.5/docs/dataprovider-src.zip:/Users/kenjiro/.netbeans/6.5/docs/jsfcl-src.zip" />
+    <property name="libs.struts.maven-pom" value="" />
+    <property name="netbeans.home+have.tests" value="true" />
+    <property name="libs.commons-math.classpath" value="/Library/Java/commons-math-1.2/commons-math-1.2.jar" />
+    <property name="libs.jaxb.src" value="" />
+    <property name="libs.IdentityAntTasks.maven-pom" value="" />
+    <property name="libs.commons-codec.src" value="" />
+    <property name="work.dir" value="/Users/kenjiro/Documents/NetBeansProjects/nbp/GdsFeel" />
+    <property name="libs.jaxb.classpath" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/ide10/modules/ext/jaxb/activation.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/ide10/modules/ext/jaxb/api/jaxb-api.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/ide10/modules/ext/jaxb/jaxb-impl.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/ide10/modules/ext/jaxb/jaxb-xjc.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/ide10/modules/ext/jaxb/api/jsr173_api.jar" />
+    <property name="libs.jsf1102.src" value="" />
+    <property name="libs.JAF.maven-pom" value="" />
+    <property name="do.depend" value="false" />
+    <property name="scala.class.path" value="/Users/kenjiro/.netbeans/6.5/scala/scala-2.7.3.final/lib/sbaz-tests.jar:/Users/kenjiro/.netbeans/6.5/scala/scala-2.7.3.final/lib/sbaz.jar:/Users/kenjiro/.netbeans/6.5/scala/scala-2.7.3.final/lib/scala-compiler.jar:/Users/kenjiro/.netbeans/6.5/scala/scala-2.7.3.final/lib/scala-dbc.jar:/Users/kenjiro/.netbeans/6.5/scala/scala-2.7.3.final/lib/scala-library.jar:/Users/kenjiro/.netbeans/6.5/scala/scala-2.7.3.final/lib/scala-swing.jar" />
+    <property name="dist.javadoc.dir" value="dist/javadoc" />
+    <property name="libs.swing-layout.classpath" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9/modules/ext/swing-layout-1.0.3.jar" />
+    <property name="libs.commons-collections.maven-pom" value="" />
+    <property name="libs.restlib.src" value="" />
+    <property name="javac.source" value="1.5" />
+    <property name="build.generated.dir" value="build/generated" />
+    <property name="libs.JavaFXUserLib.maven-pom" value="" />
+    <property name="line.separator" value="
+" />
+    <property name="auxiliary.org-netbeans-modules-editor-indent.CodeStyle.project.tab-size" value="8" />
+    <property name="libs.hibernate-persistence.src" value="" />
+    <property name="java.specification.version" value="1.5" />
+    <property name="java.vm.info" value="mixed mode, sharing" />
+    <property name="libs.jaxws21.maven-pom" value="" />
+    <property name="libs.WicketSecurity.maven-pom" value="" />
+    <property name="libs.JavaMail.src" value="" />
+    <property name="libs.commons-dbutils.maven-pom" value="" />
+    <property name="libs.axis2.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/activation-1.1.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/annogen-0.1.0.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axiom-api-1.2.5.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axiom-dom-1.2.5.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axiom-impl-1.2.5.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-adb-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-adb-codegen-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-ant-plugin-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-clustering-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-codegen-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-fastinfoset-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-java2wsdl-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-jaxbri-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-jaxws-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-jaxws-api-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-jibx-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-json-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-jws-api-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-kernel-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-metadata-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-mtompolicy-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-saaj-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-saaj-api-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-spring-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/axis2-xmlbeans-1.3.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/commons-logging-1.1.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/neethi-2.0.2.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/stax-api-1.0.1.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/wsdl4j-1.6.2.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/wstx-asl-3.2.1.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/xbean-2.2.0.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/axis2/XmlSchema-1.3.2.jar" />
+    <property name="libs.jsf12-support.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/jsfcl.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/appbase.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/dataprovider.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/sqlx.jar" />
+    <property name="libs.spring-framework.maven-pom" value="" />
+    <property name="sun.boot.class.path" value="/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Classes/classes.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Classes/ui.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Classes/laf.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Classes/sunrsasign.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Classes/jsse.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Classes/jce.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Classes/charsets.jar" />
+    <property name="libs.jakarta-regexp.classpath" value="/Library/Java/jakarta-regexp-1.5/jakarta-regexp-1.5.jar" />
+    <property name="libs.woodstock-components.javadoc" value="/Users/kenjiro/.netbeans/6.5/docs/webui-jsf-doc.zip:/Users/kenjiro/.netbeans/6.5/docs/webui-jsf-tld.zip" />
+    <property name="javac.target" value="1.5" />
+    <property name="libs.jsf1102.javadoc" value="/Users/kenjiro/.netbeans/6.5/docs/javaee5-doc-api.zip" />
+    <property name="build.test.classes.dir" value="build/test/classes" />
+    <property name="libs.commons-codec.maven-pom" value="" />
+    <property name="src.dir" value="src" />
+    <property name="libs.commons-configuration.javadoc" value="/Library/Java/commons-configuration-1.6/docs" />
+    <property name="libs.IdentityAntTasks.javadoc" value="" />
+    <property name="libs.skmail.maven-pom" value="" />
+    <property name="libs.rowset-ri.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/rowset-1.0.1.jar" />
+    <property name="libs.swing-worker.javadoc" value="/Library/Java/swing-worker/swing-worker-doc.zip" />
+    <property name="libs.jsf12.src" value="" />
+    <property name="libs.commons-email.maven-pom" value="" />
+    <property name="nbplatform.default.netbeans.dest.dir" value="/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans" />
+    <property name="libs.struts.javadoc" value="/Users/kenjiro/.netbeans/6.5/docs/struts-1.2.9-javadoc.zip" />
+    <property name="jspctask.classpath" value="/Users/kenjiro/.netbeans/6.5/ant/extra/jspcompile.jar" />
+    <property name="libs.webui-designtime.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/webui.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/commons-fileupload-1.0.jar" />
+    <property name="dist.dir" value="dist" />
+    <property name="libs.javafx-fxd-runtime.src" value="" />
+    <property name="libs.MySQL.classpath" value="/Library/Java/mysql-connector-java-5.0.6/mysql-connector-java-5.0.6-bin.jar" />
+    <property name="java.awt.printerjob" value="apple.awt.CPrinterJob" />
+    <property name="default.javac.source" value="2.7.3" />
+    <property name="libs.commons-logging.src" value="/Library/Java/commons-logging-1.1.1/commons-logging-1.1.1-sources.jar" />
+    <property name="debug-transport-by-os" value="dt_socket" />
+    <property name="javac.compilerargs.jaxws" value="" />
+    <property name="libs.MySQLDriver.src" value="" />
+    <property name="platforms.default_fx_platform.fxhome" value="/Users/kenjiro/.netbeans/6.5/javafx-sdk" />
+    <property name="sun.jnu.encoding" value="UTF8" />
+    <property name="libs.woodstock-components.src" value="/Users/kenjiro/.netbeans/6.5/docs/webui-jsf-src.zip" />
+    <property name="build.test.results.dir" value="build/test/results" />
+    <property name="java.runtime.version" value="1.5.0_16-b06-284" />
+    <property name="libs.ejb3-persistence.javadoc" value="" />
+    <property name="libs.Base.src" value="/Users/kenjiro/Documents/NetBeans-Projects/Base.nbp/src" />
+    <property name="manifest.available+main.class+mkdist.available" value="true" />
+    <property name="default.javac.target" value="2.7.3" />
+    <property name="libs.junit_4.classpath" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9/modules/ext/junit-4.5.jar" />
+    <property name="user.timezone" value="" />
+    <property name="application.homepage" value="http://gdsfeel.com/" />
+    <property name="libs.jsfsupport-designtime.src" value="/Users/kenjiro/.netbeans/6.5/docs/appbase-src.zip:/Users/kenjiro/.netbeans/6.5/docs/dataprovider-src.zip:/Users/kenjiro/.netbeans/6.5/docs/jsfcl-src.zip" />
+    <property name="netbeans.dirs" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/nb6.5:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/ide10:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/apisupport1:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/websvccommon1:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/profiler3:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/gsf1:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/harness:" />
+    <property name="libs.WicketSecurity.src" value="" />
+    <property name="libs.exceptionhandler-runtime.src" value="" />
+    <property name="java.ext.dirs" value="/Library/Java/Extensions:/System/Library/Java/Extensions:/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/ext" />
+    <property name="libs.absolutelayout.classpath" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/modules/ext/AbsoluteLayout.jar" />
+    <property name="libs.commons-lang.classpath" value="/Library/Java/commons-lang-2.4/commons-lang-2.4.jar" />
+    <property name="excludes" value="" />
+    <property name="libs.restlib.maven-pom" value="" />
+    <property name="platforms.JDK_1.6.bootclasspath" value="/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/classes.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/ui.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/laf.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/sunrsasign.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/jsse.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/jce.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/charsets.jar:/Library/Java/Extensions/ldapsec.jar:/Library/Java/Extensions/localedata.jar:/Library/Java/Extensions/mysql-connector-java-3.1.13-bin.jar:/Library/Java/Extensions/sunjce_provider.jar:/System/Library/Java/Extensions/AppleScriptEngine.jar:/System/Library/Java/Extensions/CoreAudio.jar:/System/Library/Java/Extensions/dns_sd.jar:/System/Library/Java/Extensions/j3daudio.jar:/System/Library/Java/Extensions/j3dcore.jar:/System/Library/Java/Extensions/j3dutils.jar:/System/Library/Java/Extensions/jai_codec.jar:/System/Library/Java/Extensions/jai_core.jar:/System/Library/Java/Extensions/mlibwrapper_jai.jar:/System/Library/Java/Extensions/MRJToolkit.jar:/System/Library/Java/Extensions/QTJava.zip:/System/Library/Java/Extensions/vecmath.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/lib/ext/apple_provider.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/lib/ext/dnsns.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/lib/ext/localedata.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/lib/ext/sunjce_provider.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/lib/ext/sunpkcs11.jar" />
+    <property name="apple.laf.useScreenMenuBar" value="true" />
+    <property name="java.class.path" value="/Library/Java/commons-lang-2.4/commons-lang-2.4.jar:/Library/Java/commons-logging-1.1.1/commons-logging-1.1.1.jar:/Library/Java/commons-io-1.4/commons-io-1.4.jar:/Library/Java/commons-collections-3.2.1/commons-collections-3.2.1.jar:/Library/Java/commons-configuration-1.6/commons-configuration-1.6.jar:/Library/Java/jakarta-regexp-1.5/jakarta-regexp-1.5.jar:/Users/kenjiro/Documents/NetBeansProjects/nbp/GdsFeel/build/classes:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/platform9/modules/ext/junit-4.5.jar:/Users/kenjiro/Documents/NetBeansProjects/nbp/GdsFeel/build/test/classes:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/ant/lib/ant-launcher.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/ant/lib/ant.jar:/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/ant/patches/72080.jar" />
+    <property name="libs.commons-logging.classpath" value="/Library/Java/commons-logging-1.1.1/commons-logging-1.1.1.jar" />
+    <property name="libs.commons-cli.classpath" value="/Library/Java/commons-cli-1.1/commons-cli-1.1.jar" />
+    <property name="libs.webui-designtime.javadoc" value="/Users/kenjiro/.netbeans/6.5/docs/webui-doc.zip" />
+    <property name="libs.absolutelayout.src" value="" />
+    <property name="libs.rowset-ri.src" value="" />
+    <property name="os.version" value="10.5.7" />
+    <property name="application.args" value="" />
+    <property name="libs.jsf1102.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_1_02/commons-beanutils.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_1_02/commons-collections.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_1_02/commons-digester.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_1_02/commons-logging.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_1_02/jsf-api.jar:/Users/kenjiro/.netbeans/6.5/modules/ext/jsf-1_1_02/jsf-impl.jar" />
+    <property name="libs.toplink.javadoc" value="/Users/kenjiro/.netbeans/6.5/docs/javaee5-doc-api.zip" />
+    <property name="libs.swing-worker.maven-pom" value="" />
+    <property name="scala.home" value="/Users/kenjiro/.netbeans/6.5/scala/scala-2.7.3.final" />
+    <property name="libs.restlib.javadoc" value="/Users/kenjiro/.netbeans/6.5/docs/jersey-api-doc.zip" />
+    <property name="libs.Jasypt.src" value="/Users/kenjiro/.netbeans/6.5/sources/jasypt-1.3.1-sources.jar" />
+    <property name="libs.commons-io.src" value="/Library/Java/commons-io-1.4/commons-io-1.4-sources.jar" />
+    <property name="libs.beans-binding.javadoc" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/docs/beansbinding-1.2.1-doc.zip" />
+    <property name="java.awt.graphicsenv" value="apple.awt.CGraphicsEnvironment" />
+    <property name="java.vm.vendor" value="Apple Inc." />
+    <property name="libs.CopyLibs.classpath" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/java2/ant/extra/org-netbeans-modules-java-j2seproject-copylibstask.jar" />
+    <property name="libs.spring-webmvc.maven-pom" value="" />
+    <property name="run.jvmargs" value="" />
+    <property name="libs.ejb3-persistence.classpath" value="/Applications/NetBeans/NetBeans 6.5.app/Contents/Resources/NetBeans/java2/modules/ext/hibernate/ejb3-persistence.jar" />
+    <property name="apple.lang.DisableCompatibilityClasspath" value="true" />
+    <property name="libs.spring-framework.javadoc" value="" />
+    <property name="libs.Base.classpath" value="/Users/kenjiro/Documents/NetBeans-Projects/Base.nbp/dist/Base.jar" />
+    <property name="libs.jquery.scriptpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/javascript/jquery-1.2.6.zip" />
+    <property name="libs.PostgreSQLDriver.classpath" value="/Applications/NetBeans/NetBeans 6.5.1.app/Contents/Resources/NetBeans/ide10/modules/ext/postgresql-8.3-603.jdbc3.jar" />
+    <property name="libs.jsf12.maven-pom" value="" />
+    <property name="libs.commons-httpclient.maven-pom" value="" />
+    <property name="libs.junit.src" value="" />
+    <property name="jnlp.signed" value="false" />
+    <property name="libs.javafx-fxd-runtime.classpath" value="/Users/kenjiro/.netbeans/6.5/modules/ext/fxd/lib/javafx-fxd-1.0.jar" />
+    <property name="libs.apache-log4j.classpath" value="/Library/Java/apache-log4j-1.2.15/log4j-1.2.15.jar" />
+    <property name="main.class" value="gdsfeel.Main" />
+    <property name="libs.CopyLibs.src" value="" />
+    <property name="build.dir" value="build" />
+    <property name="libs.commons-net.javadoc" value="/Library/Java/commons-net-2.0/apidocs" />
+    <property name="ant.version" value="Apache Ant version 1.7.1 compiled on June 27 2008" />
+    <property name="libs.f5Library.classpath" value="/Users/kenjiro/Documents/NetBeansProjects/nbp/f5.nbp/dist/f5.jar" />
+    <property name="file.encoding" value="UTF8" />
+    <property name="build.classes.excludes" value="**/*.java,**/*.form" />
+    <property name="libs.commons-email.javadoc" value="/Library/Java/commons-email-1.1/commons-email-1.1-javadoc.jar" />
+    <property name="javadoc.nonavbar" value="false" />
+    <property name="platform.active" value="default_platform" />
+    <property name="awt.toolkit" value="apple.awt.CToolkit" />
+    <property name="libs.commons-lang.javadoc" value="/Library/Java/commons-lang-2.4/apidocs" />
+    <property name="libs.transform.maven-pom" value="" />
+  </properties>
+  <testcase classname="com.gdsfeel.util.ArchiverTest" name="testPrintZipFile" time="1.346" />
+  <testcase classname="com.gdsfeel.util.ArchiverTest" name="testExtract" time="0.994" />
+  <system-out><![CDATA[printZipFile
+041.structure/
+041.structure/041.1.gdsfeelbeta
+042.structure/
+042.structure/042.1.gdsfeelbeta
+043.structure/
+043.structure/043.1.gdsfeelbeta
+044.structure/
+044.structure/044.1.gdsfeelbeta
+045.structure/
+045.structure/045.1.gdsfeelbeta
+046.structure/
+046.structure/046.1.gdsfeelbeta
+047.structure/
+047.structure/047.1.gdsfeelbeta
+050.structure/
+050.structure/050.1.gdsfeelbeta
+051.structure/
+051.structure/051.1.gdsfeelbeta
+052.structure/
+052.structure/052.1.gdsfeelbeta
+053.structure/
+053.structure/053.1.gdsfeelbeta
+054.structure/
+054.structure/054.1.gdsfeelbeta
+055.structure/
+055.structure/055.1.gdsfeelbeta
+056.structure/
+056.structure/056.1.gdsfeelbeta
+057.structure/
+057.structure/057.1.gdsfeelbeta
+060.structure/
+060.structure/060.1.gdsfeelbeta
+061.structure/
+061.structure/061.1.gdsfeelbeta
+062.structure/
+062.structure/062.1.gdsfeelbeta
+063.structure/
+063.structure/063.1.gdsfeelbeta
+064.structure/
+064.structure/064.1.gdsfeelbeta
+065.structure/
+065.structure/065.1.gdsfeelbeta
+066.structure/
+066.structure/066.1.gdsfeelbeta
+067.structure/
+067.structure/067.1.gdsfeelbeta
+070.structure/
+070.structure/070.1.gdsfeelbeta
+071.structure/
+071.structure/071.1.gdsfeelbeta
+072.structure/
+072.structure/072.1.gdsfeelbeta
+073.structure/
+073.structure/073.1.gdsfeelbeta
+074.structure/
+074.structure/074.1.gdsfeelbeta
+075.structure/
+075.structure/075.1.gdsfeelbeta
+076.structure/
+076.structure/076.1.gdsfeelbeta
+077.structure/
+077.structure/077.1.gdsfeelbeta
+100.structure/
+100.structure/100.1.gdsfeelbeta
+101.structure/
+101.structure/101.1.gdsfeelbeta
+102.structure/
+102.structure/102.1.gdsfeelbeta
+103.structure/
+103.structure/103.1.gdsfeelbeta
+104.structure/
+104.structure/104.1.gdsfeelbeta
+105.structure/
+105.structure/105.1.gdsfeelbeta
+106.structure/
+106.structure/106.1.gdsfeelbeta
+107.structure/
+107.structure/107.1.gdsfeelbeta
+110.structure/
+110.structure/110.1.gdsfeelbeta
+111.structure/
+111.structure/111.1.gdsfeelbeta
+112.structure/
+112.structure/112.1.gdsfeelbeta
+113.structure/
+113.structure/113.1.gdsfeelbeta
+114.structure/
+114.structure/114.1.gdsfeelbeta
+115.structure/
+115.structure/115.1.gdsfeelbeta
+116.structure/
+116.structure/116.1.gdsfeelbeta
+117.structure/
+117.structure/117.1.gdsfeelbeta
+120.structure/
+120.structure/120.1.gdsfeelbeta
+121.structure/
+121.structure/121.1.gdsfeelbeta
+122.structure/
+122.structure/122.1.gdsfeelbeta
+123.structure/
+123.structure/123.1.gdsfeelbeta
+124.structure/
+124.structure/124.1.gdsfeelbeta
+125.structure/
+125.structure/125.1.gdsfeelbeta
+126.structure/
+126.structure/126.1.gdsfeelbeta
+127.structure/
+127.structure/127.1.gdsfeelbeta
+130.structure/
+130.structure/130.1.gdsfeelbeta
+131.structure/
+131.structure/131.1.gdsfeelbeta
+132.structure/
+132.structure/132.1.gdsfeelbeta
+133.structure/
+133.structure/133.1.gdsfeelbeta
+134.structure/
+134.structure/134.1.gdsfeelbeta
+135.structure/
+135.structure/135.1.gdsfeelbeta
+136.structure/
+136.structure/136.1.gdsfeelbeta
+137.structure/
+137.structure/137.1.gdsfeelbeta
+140.structure/
+140.structure/140.1.gdsfeelbeta
+141.structure/
+141.structure/141.1.gdsfeelbeta
+142.structure/
+142.structure/142.1.gdsfeelbeta
+143.structure/
+143.structure/143.1.gdsfeelbeta
+144.structure/
+144.structure/144.1.gdsfeelbeta
+145.structure/
+145.structure/145.1.gdsfeelbeta
+146.structure/
+146.structure/146.1.gdsfeelbeta
+147.structure/
+147.structure/147.1.gdsfeelbeta
+150.structure/
+150.structure/150.1.gdsfeelbeta
+151.structure/
+151.structure/151.1.gdsfeelbeta
+152.structure/
+152.structure/152.1.gdsfeelbeta
+153.structure/
+153.structure/153.1.gdsfeelbeta
+154.structure/
+154.structure/154.1.gdsfeelbeta
+155.structure/
+155.structure/155.1.gdsfeelbeta
+156.structure/
+156.structure/156.1.gdsfeelbeta
+157.structure/
+157.structure/157.1.gdsfeelbeta
+160.structure/
+160.structure/160.1.gdsfeelbeta
+161.structure/
+161.structure/161.1.gdsfeelbeta
+162.structure/
+162.structure/162.1.gdsfeelbeta
+163.structure/
+163.structure/163.1.gdsfeelbeta
+164.structure/
+164.structure/164.1.gdsfeelbeta
+165.structure/
+165.structure/165.1.gdsfeelbeta
+166.structure/
+166.structure/166.1.gdsfeelbeta
+167.structure/
+167.structure/167.1.gdsfeelbeta
+170.structure/
+170.structure/170.1.gdsfeelbeta
+171.structure/
+171.structure/171.1.gdsfeelbeta
+172.structure/
+172.structure/172.1.gdsfeelbeta
+173.structure/
+173.structure/173.1.gdsfeelbeta
+174.structure/
+174.structure/174.1.gdsfeelbeta
+175.structure/
+175.structure/175.1.gdsfeelbeta
+176.structure/
+176.structure/176.1.gdsfeelbeta
+AAA.structure/
+AAA.structure/AAA.1.gdsfeelbeta
+ABC.structure/
+ABC.structure/ABC.1.gdsfeelbeta
+CDF.structure/
+CDF.structure/CDF.1.gdsfeelbeta
+DDD.structure/
+DDD.structure/DDD.1.gdsfeelbeta
+FFF.structure/
+FFF.structure/FFF.1.gdsfeelbeta
+FUCK.structure/
+FUCK.structure/FUCK.1.gdsfeelbeta
+FUCK1.structure/
+FUCK1.structure/FUCK1.1.gdsfeelbeta
+FUCK_YOU.structure/
+FUCK_YOU.structure/FUCK_YOU.1.gdsfeelbeta
+GRYPH_A.structure/
+GRYPH_A.structure/GRYPH_A.1.gdsfeelbeta
+GRYPH_B.structure/
+GRYPH_B.structure/GRYPH_B.1.gdsfeelbeta
+GRYPH_C.structure/
+GRYPH_C.structure/GRYPH_C.1.gdsfeelbeta
+GRYPH_D.structure/
+GRYPH_D.structure/GRYPH_D.1.gdsfeelbeta
+GRYPH_E.structure/
+GRYPH_E.structure/GRYPH_E.1.gdsfeelbeta
+GRYPH_F.structure/
+GRYPH_F.structure/GRYPH_F.1.gdsfeelbeta
+GRYPH_G.structure/
+GRYPH_G.structure/GRYPH_G.1.gdsfeelbeta
+GRYPH_H.structure/
+GRYPH_H.structure/GRYPH_H.1.gdsfeelbeta
+GRYPH_I.structure/
+GRYPH_I.structure/GRYPH_I.1.gdsfeelbeta
+GRYPH_J.structure/
+GRYPH_J.structure/GRYPH_J.1.gdsfeelbeta
+GRYPH_K.structure/
+GRYPH_K.structure/GRYPH_K.1.gdsfeelbeta
+GRYPH_L.structure/
+GRYPH_L.structure/GRYPH_L.1.gdsfeelbeta
+GRYPH_M.structure/
+GRYPH_M.structure/GRYPH_M.1.gdsfeelbeta
+GRYPH_N.structure/
+GRYPH_N.structure/GRYPH_N.1.gdsfeelbeta
+GRYPH_O.structure/
+GRYPH_O.structure/GRYPH_O.1.gdsfeelbeta
+GRYPH_P.structure/
+GRYPH_P.structure/GRYPH_P.1.gdsfeelbeta
+GRYPH_Q.structure/
+GRYPH_Q.structure/GRYPH_Q.1.gdsfeelbeta
+GRYPH_R.structure/
+GRYPH_R.structure/GRYPH_R.1.gdsfeelbeta
+GRYPH_S.structure/
+GRYPH_S.structure/GRYPH_S.1.gdsfeelbeta
+GRYPH_T.structure/
+GRYPH_T.structure/GRYPH_T.1.gdsfeelbeta
+GRYPH_U.structure/
+GRYPH_U.structure/GRYPH_U.1.gdsfeelbeta
+GRYPH_V.structure/
+GRYPH_V.structure/GRYPH_V.1.gdsfeelbeta
+GRYPH_W.structure/
+GRYPH_W.structure/GRYPH_W.1.gdsfeelbeta
+GRYPH_X.structure/
+GRYPH_X.structure/GRYPH_X.1.gdsfeelbeta
+GRYPH_Y.structure/
+GRYPH_Y.structure/GRYPH_Y.1.gdsfeelbeta
+GRYPH_Z.structure/
+GRYPH_Z.structure/GRYPH_Z.1.gdsfeelbeta
+LIB.ini
+extract
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
