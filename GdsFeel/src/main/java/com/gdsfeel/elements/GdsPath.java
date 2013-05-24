@@ -19,7 +19,7 @@ public class GdsPath extends GdsPrimitiveElement {
 
   private int _pathtype;
   private double _width;
-
+  private Point2D[] _outlinePoints;
   
   public GdsPath() {
     super();
@@ -35,6 +35,14 @@ public class GdsPath extends GdsPrimitiveElement {
 
   @Override
   public Point2D[] outlinePoints() {
+    if (_outlinePoints == null) {
+      _outlinePoints = lookupOutlinePoints();
+    }
+    return _outlinePoints;
+  }
+  
+  
+  private Point2D[] lookupOutlinePoints() {
     Point2D[] result = pathOutlinePoints();
     if (result.length == 0) {
       return super.outlinePoints();

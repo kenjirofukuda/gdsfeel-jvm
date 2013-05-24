@@ -8,6 +8,7 @@
 package com.gdsfeel.elements;
 
 
+import com.gdsfeel.Structure;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -29,7 +30,8 @@ public class GdsReferenceElement extends GdsElement {
   private boolean _reflect;
   
   private AffineTransform _transform;
-
+  protected String _refName;
+  private Structure _refStructure;
 
   protected GdsReferenceElement() {
     setToNormalTransform();
@@ -127,6 +129,20 @@ public class GdsReferenceElement extends GdsElement {
     Point2D[] result = new Point2D.Double[points.length];
     mat.transform(points, 0, result, 0, points.length);
     return result;
+  }
+
+  public String getReferenceName() {
+    return _refName;
+  }
+
+  public Structure getReferenceStructure() {
+    if (_refStructure == null) {
+      if (getLibrary() == null) {
+        return null;
+      }
+    _refStructure = getLibrary().structureNamed(_refName);
+    }    
+    return _refStructure;
   }
 }
 

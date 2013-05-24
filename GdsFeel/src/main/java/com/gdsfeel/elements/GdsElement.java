@@ -31,8 +31,7 @@ public class GdsElement extends GdsObject {
   private Point2D[] _vertices;
   private int _keyNumber;
   private Rectangle2D _boundingBox;
-  protected String _refName;
-
+  private Map<String, Object> _runtimeMap;
   
   public GdsElement() {
     super();
@@ -297,16 +296,21 @@ public class GdsElement extends GdsObject {
     log.warn(type + ": Can't current handled type!!!");
     return null;
   }
-
-  public String getReferenceName() {
-    return _refName;
-  }
-
-  public Structure resolveStructure() {
-    if (getLibrary() == null) {
-      return null;
+  
+  public void setRuntimeProperty(String key, Object value) {
+    if (_runtimeMap == null) {
+      _runtimeMap = new HashMap<>();
     }
-    return getLibrary().structureNamed(_refName);
+    _runtimeMap.put(key, value);
   }
-
+  
+  public Object getRuntimeProperty(String key) {
+    if (_runtimeMap == null) {
+      _runtimeMap = new HashMap<>();
+    }
+    if (_runtimeMap.containsKey(key)) {
+      return _runtimeMap.get(key);
+    }
+    return null;
+  }
 }

@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -100,21 +101,24 @@ public class StructureView extends JPanel implements ComponentListener {
       drawElement(g, e);
     }
   }
-
+  
   private void drawElement(Graphics2D g, GdsElement e) {
-    GdsElementDrawer drawer;
-    Class<? extends GdsElementDrawer> drawerClass = GdsElementDrawer.drawerClassForElement(e);
-    try {
-      drawer = drawerClass.newInstance();
-      drawer.initWith(e, this);
-      drawer.fullDrawOn(g);
+    GdsElementDrawer drawer = (GdsElementDrawer) e.getRuntimeProperty("drawer");
+    if (drawer == null) {
+      Class<? extends GdsElementDrawer> drawerClass = GdsElementDrawer.drawerClassForElement(e);
+      try {
+        drawer = drawerClass.newInstance();
+        e.setRuntimeProperty("drawer", drawer);
+      }
+      catch (InstantiationException ex) {
+        log.error(ex);
+      }
+      catch (IllegalAccessException ex) {
+        log.error(ex);
+      }
     }
-    catch (InstantiationException ex) {
-      log.error(ex);
-    }
-    catch (IllegalAccessException ex) {
-      log.error(ex);
-    }
+    drawer.initWith(e, this);
+    drawer.fullDrawOn(g);
   }
 
   protected GdsElement[] displayElements() {
@@ -207,135 +211,4 @@ public class StructureView extends JPanel implements ComponentListener {
   }
 
 }
-class GdsElementDrawer {
 
-  private static Log log = LogFactory.getLog(GdsElementDrawer.class);
-  protected GdsElement element;
-  protected StructureView view;
-
-  public void initWith(GdsElement element, StructureView view) {
-    this.element = element;
-    this.view = view;
-  }
-
-  public void fullDrawOn(Graphics2D g) {
-    Color savedColor = g.getColor();
-    g.setColor(frameColor());
-    drawOn(g);
-    g.setColor(savedColor);
-  }
-
-  public Color frameColor() {
-    Color result = Color.white;
-    try {
-      GdsPrimitiveElement pe = (GdsPrimitiveElement) element;
-      result = pe.getStructure().colorForLayerNumber(pe.getLayerNumber());
-    }
-    catch (ClassCastException ex) {
-    }
-    return result;
-  }
-
-  public void drawOn(Graphics2D g) {
-    strokePoints(g, element.outlinePoints(), view.getViewPort().getTransform());
-  }
-
-  public void strokePoints(Graphics2D g, Point2D[] points, AffineTransform tx) {
-    GeneralPath path = new GeneralPath();
-    addPoints(path, points);
-    Shape s = path;
-    if (tx != null) {
-      s = tx.createTransformedShape(path);
-    }
-    g.draw(s);
-  }
-
-  public void strokePoints(Graphics2D g, Point2D[] points) {
-    strokePoints(g, points, null);
-  }
-
-  private void addPoints(GeneralPath path, Point2D[] points) {
-    int index = 0;
-    for (Point2D pt : points) {
-      if (index == 0) {
-        path.moveTo(pt.getX(), pt.getY());
-      }
-      else {
-        path.lineTo(pt.getX(), pt.getY());
-      }
-      index += 1;
-    }
-  }
-
-  static Class<? extends GdsElementDrawer> drawerClassForElement(GdsElement e) {
-    Class<? extends GdsElementDrawer> drawerClass = GdsElementDrawer.class;
-    Class elementClass = e.getClass();
-    if (elementClass.getSimpleName().equalsIgnoreCase("GdsSref")) {
-      return GdsSrefDrawer.class;
-    }
-    if (elementClass.getSimpleName().equalsIgnoreCase("GdsAref")) {
-      return GdsArefDrawer.class;
-    }
-    return drawerClass;
-  }
-}
-
-class GdsPathDrawer extends GdsElementDrawer {
-
-  GdsPathDrawer() {
-    super();
-  }
-}
-
-class GdsBoundaryDrawer extends GdsElementDrawer {
-
-  GdsBoundaryDrawer() {
-    super();
-  }
-}
-
-class GdsSrefDrawer extends GdsElementDrawer {
-
-  GdsSrefDrawer() {
-    super();
-  }
-
-  @Override
-  public Color frameColor() {
-    return Color.LIGHT_GRAY;
-  }
-
-  @Override
-  public void drawOn(Graphics2D g) {
-    if (element.resolveStructure() == null) {
-      return;
-    }
-    GdsSref e = (GdsSref) element;
-    view.getViewPort().pushTransform(e.getTransform());
-    view.drawElements(g, e.resolveStructure().getElements());
-    view.getViewPort().popTransform();
-  }
-}
-
-class GdsArefDrawer extends GdsElementDrawer {
-
-  GdsArefDrawer() {
-    super();
-  }
-
-  @Override
-  public void drawOn(Graphics2D g) {
-    if (element.resolveStructure() == null) {
-      return;
-    }
-    GdsAref e = (GdsAref) element;
-
-    view.getViewPort().pushTransform(e.getTransform());
-    for (AffineTransform t : e.getOffsetTransforms()) {
-      view.getViewPort().pushTransform(t);
-      view.drawElements(g, e.resolveStructure().getElements());
-      view.getViewPort().popTransform();
-    }
-    view.getViewPort().popTransform();
-  }
-}

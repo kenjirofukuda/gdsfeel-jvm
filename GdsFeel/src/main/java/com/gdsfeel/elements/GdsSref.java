@@ -34,7 +34,7 @@ public class GdsSref extends GdsReferenceElement {
 
 
   public Rectangle2D structureBoundingBox() {
-    Rectangle2D result = resolveStructure().getBoundingBox();
+    Rectangle2D result = getReferenceStructure().getBoundingBox();
     return result;
   }
 

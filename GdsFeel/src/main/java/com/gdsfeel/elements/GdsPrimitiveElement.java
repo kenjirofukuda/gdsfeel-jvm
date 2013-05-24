@@ -5,6 +5,7 @@
 
 package com.gdsfeel.elements;
 
+import com.gdsfeel.Structure;
 import java.util.Map;
 
 
@@ -16,7 +17,7 @@ import java.util.Map;
 public class GdsPrimitiveElement extends GdsElement {
   private int _datatype;
   private int _layerNumber;
-
+  
   protected GdsPrimitiveElement() {
     super();
     _datatype = 0;
