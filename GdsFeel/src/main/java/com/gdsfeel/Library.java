@@ -27,9 +27,8 @@ import org.apache.regexp.RE;
 import org.ini4j.Ini;
 
 /**
- * represents GDSII DATABASE LIBRARY
- * element class: Structure
- * 
+ * represents GDSII DATABASE LIBRARY element class: Structure
+ *
  * @author kenjiro
  */
 public class Library extends GdsObject {
@@ -43,7 +42,6 @@ public class Library extends GdsObject {
   private static String LIB_INFO_NAME = "LIB.ini";
   private static String LAYERS_NAME = "layers.xml";
   private static RE NAME_RE = new RE("^([A-Z]){1}[A-Z0-9$_]*$");
-
   private File dbFile;
   private File extractedFolder;
   private String name;
@@ -51,7 +49,6 @@ public class Library extends GdsObject {
   private String unit;
   private Map<String, Structure> nameMap;
   private Layers layers;
-  
 
   public Library(File dbFile) {
     Validate.notNull(dbFile);
@@ -63,17 +60,16 @@ public class Library extends GdsObject {
     layers = new Layers();
   }
 
-  
   public Layers getLayers() {
     tryOpen();
     return layers;
   }
-  
+
   @Override
   public String toString() {
     return "Library(" + getName() + ")";
   }
-  
+
   public boolean isOpen() {
     if (extractedFolder == null) {
       return false;
@@ -81,11 +77,9 @@ public class Library extends GdsObject {
     return extractedFolder.isDirectory();
   }
 
-  
   public boolean isClose() {
-    return ! isOpen();
+    return !isOpen();
   }
-
 
   public void open() throws IOException {
     if (isOpen()) {
@@ -104,7 +98,6 @@ public class Library extends GdsObject {
     lookupStructures();
   }
 
-
   public void close() throws IOException {
     if (!isOpen()) {
       return;
@@ -113,8 +106,7 @@ public class Library extends GdsObject {
     Validate.isTrue(!libInfoFile().exists());
   }
 
-
-  public Structure structureNamed(String structureName)  {
+  public Structure structureNamed(String structureName) {
     tryOpen();
     if (nameMap.containsKey(Structure.asKey(structureName))) {
       return nameMap.get(Structure.asKey(structureName));
@@ -122,10 +114,8 @@ public class Library extends GdsObject {
     return null;
   }
 
-
-
-  public void tryOpen()  {
-    if (! isOpen()) {
+  public void tryOpen() {
+    if (!isOpen()) {
       try {
         open();
       }
@@ -135,8 +125,7 @@ public class Library extends GdsObject {
     }
   }
 
-
-  public void tryClose()  {
+  public void tryClose() {
     if (isOpen()) {
       try {
         close();
@@ -147,23 +136,19 @@ public class Library extends GdsObject {
     }
   }
 
-
   private File libInfoFile() {
     return new File(extractedFolder(), LIB_INFO_NAME);
   }
 
-  
   private File layersFile() {
     return new File(extractedFolder(), LAYERS_NAME);
   }
-
 
   private void loadLayers() {
     Validate.isTrue(layersFile().isFile());
     layers.loadFromXmlFile(layersFile());
   }
 
-  
   public Color colorForLayerNumber(int layerNumber) {
     tryOpen();
     return layers.atNumber(layerNumber).getColor();
@@ -192,11 +177,13 @@ public class Library extends GdsObject {
 
   private void lookupStructures() {
     File dir = extractedFolder();
-//    Collection subDirs = FileUtils.listFiles(dir, new String[] {"structure"}, false);
-
     for (File d : dir.listFiles()) {
-      if (! d.isDirectory()) continue;
-      if (! d.getName().endsWith(".structure")) continue;
+      if (!d.isDirectory()) {
+        continue;
+      }
+      if (!d.getName().endsWith(".structure")) {
+        continue;
+      }
       Structure newInstance = new Structure(this, d);
       nameMap.put(newInstance.getKeyName(), newInstance);
     }
@@ -205,7 +192,7 @@ public class Library extends GdsObject {
   private File extractedFolder() {
     if (extractedFolder == null) {
       extractedFolder = new File(Library.extractAreaFolder(),
-                                 getNameWithExtension());
+              getNameWithExtension());
     }
     return extractedFolder;
   }
@@ -217,12 +204,10 @@ public class Library extends GdsObject {
     return Library.getName(dbFile.getName());
   }
 
-
-  public String[] getStructureNames()  {
+  public String[] getStructureNames() {
     tryOpen();
     return new TreeSet<>(nameMap.keySet()).toArray(new String[0]);
   }
-
 
   public String getNameWithExtension() {
     return Library.getNameWithExtension(getName());
@@ -246,9 +231,7 @@ public class Library extends GdsObject {
 
   private static File[] getFiles(File pathToGdsFeel) {
     return (File[]) FileUtils.listFiles(pathToGdsFeel,
-                                        FileFilterUtils.asFileFilter(new FileFilter() {
-
-      
+            FileFilterUtils.asFileFilter(new FileFilter() {
       @Override
       public boolean accept(File pathname) {
         return isValid(pathname);
@@ -262,7 +245,7 @@ public class Library extends GdsObject {
 
   /**
    * stripped extension name
-   * 
+   *
    * @param libName
    * @return "abc.db" -> "ABC"
    */
@@ -295,6 +278,7 @@ public class Library extends GdsObject {
 
   /**
    * tests collect zip archived database.
+   *
    * @param dbFile test files
    * @return
    */

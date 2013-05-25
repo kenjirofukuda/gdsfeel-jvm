@@ -55,10 +55,18 @@ public class Structure extends GdsObject {
     loaded = false;
   }
 
+  /***
+   * self owner library instance
+   * @return 
+   */
   public Library getLibrary() {
     return (Library) getParent();
   }
 
+  /***
+   * structure name
+   * @return 
+   */
   public String getName() {
     return FilenameUtils.getBaseName(directory.getName()).toUpperCase();
   }
@@ -67,6 +75,11 @@ public class Structure extends GdsObject {
     return asKey(getName());
   }
 
+  /***
+   * 
+   * @param structureName
+   * @return map entry key name 
+   */
   public static String asKey(String structureName) {
     return structureName.toUpperCase();
   }

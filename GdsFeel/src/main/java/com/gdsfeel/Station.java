@@ -17,7 +17,7 @@ public class Station extends GdsObject {
   private List<Library> _libraries;
   private Library _library;
   private Structure _structure;
-
+  
   public Station() {
     _libraries = new ArrayList<>();
   }
@@ -27,6 +27,7 @@ public class Station extends GdsObject {
     for (File f : dbFiles) {
       _libraries.add(new Library(f));
     }
+    setupDefaultVisibility();
   }
 
   public void tearDown() {
@@ -68,4 +69,17 @@ public class Station extends GdsObject {
     }
     return null;
   }
+  
+  private static final Kind[] DEFAULT_VISIBLE_KINDS = new Kind[] {
+    Kind.BD, Kind.PB
+  };
+  
+  private Kind[] getDefaultVisibleKinds() {
+    return DEFAULT_VISIBLE_KINDS;
+  }
+  
+  private void setupDefaultVisibility() {
+    for (Kind k : getDefaultVisibleKinds()) { 
+    }
+  }  
 }
