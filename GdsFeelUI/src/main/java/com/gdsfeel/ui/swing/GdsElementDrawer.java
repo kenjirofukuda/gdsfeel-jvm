@@ -32,7 +32,7 @@ class GdsElementDrawer<T extends GdsElement> {
   private Color _frameColor;
   protected GeneralPath _framePath;
   private Paint _paint;
-  
+
   public void initWith(GdsElement element, StructureView view) {
     this.element = (T) element;
     this.view = view;
@@ -43,7 +43,7 @@ class GdsElementDrawer<T extends GdsElement> {
     drawOn(g);
     g.setColor(savedColor);
   }
-    
+
   public void drawOn(Graphics2D g) {
     if (canPaint()) {
       g.setPaint(getPaint());
@@ -68,7 +68,7 @@ class GdsElementDrawer<T extends GdsElement> {
   protected boolean canPaint() {
     return false; // _paint != null;
   }
-  
+
   public Color getFrameColor() {
     if (_frameColor == null) {
       _frameColor = lookupFrameColor();
@@ -80,12 +80,12 @@ class GdsElementDrawer<T extends GdsElement> {
     // FIXME:
     return _paint;
   }
-  
+
   private Color lookupFrameColor() {
     Color result = Color.white;
     try {
       GdsPrimitiveElement pe = (GdsPrimitiveElement) element;
-      result = pe.getStructure().colorForLayerNumber(pe.getLayerNumber());
+      result = GdsPrimitiveElement.lookupFrameColor(pe);
     }
     catch (ClassCastException ex) {
     }
@@ -109,8 +109,7 @@ class GdsElementDrawer<T extends GdsElement> {
     }
     g.fill(s);
   }
-  
-  
+
   public void strokePoints(Graphics2D g, Point2D[] points, AffineTransform tx) {
     if (_framePath == null) {
       _framePath = new GeneralPath();
@@ -200,7 +199,7 @@ class GdsPathDrawer extends GdsElementDrawer<GdsPath> {
     if (_framePath == null) {
       _framePath = new GeneralPath();
       addPoints(_framePath, element.outlinePoints());
-    }    
+    }
     return _framePath;
   }
 

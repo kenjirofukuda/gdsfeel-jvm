@@ -107,6 +107,7 @@ public class Library extends GdsObject {
   }
 
   public Structure structureNamed(String structureName) {
+    Validate.notEmpty(structureName);
     tryOpen();
     if (nameMap.containsKey(Structure.asKey(structureName))) {
       return nameMap.get(Structure.asKey(structureName));

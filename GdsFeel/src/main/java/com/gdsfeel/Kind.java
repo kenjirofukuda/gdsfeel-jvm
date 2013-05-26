@@ -27,7 +27,6 @@ public class Kind {
   public String getAddrev() {
     return addrev;
   }
-  
   private String addrev;
   public static final Kind BD = new Kind("BD", "boundary");
   public static final Kind PB = new Kind("PB", "path boundary");
@@ -56,7 +55,6 @@ public class Kind {
     public Kind getKind() {
       return kind;
     }
-    
     private boolean selectable;
     private boolean visible;
     private Color color;
