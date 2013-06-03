@@ -7,12 +7,15 @@ package com.gdsfeel.elements;
 import com.gdsfeel.GdsObject;
 import com.gdsfeel.Library;
 import com.gdsfeel.Structure;
+import com.gdsfeel.fx.container.GdsPoints;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.geometry.Rectangle2D;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,13 +30,17 @@ public class GdsElement extends GdsObject {
 
   private static Log log = LogFactory.getLog(GdsElement.class);
   private Point2D[] _vertices;
+  private GdsPoints vertices;
   private int _keyNumber;
-  private Rectangle2D _boundingBox;
+  private java.awt.geom.Rectangle2D _boundingBox;
+  private ObjectProperty<Rectangle2D> boundingBox2;
   private Map<String, Object> _runtimeMap;
 
   public GdsElement() {
     super();
     _vertices = new Point2D.Double[0];
+    vertices = new GdsPoints(this, "vertices");
+    boundingBox2 = new SimpleObjectProperty<>(this, "boundingBox2");
     _keyNumber = -1;
   }
 
@@ -56,27 +63,46 @@ public class GdsElement extends GdsObject {
     return _vertices;
   }
 
+  public GdsPoints getVertices2() {
+    return vertices;
+  }
+
   public Point2D[] outlinePoints() {
     return getVertices();
   }
 
-  public Rectangle2D getBoundingBox() {
+  public GdsPoints outlinePoints2() {
+    return getVertices2();
+  }
+
+  public java.awt.geom.Rectangle2D getBoundingBox() {
     if (_boundingBox == null) {
       _boundingBox = lookupBoundingBox();
     }
     return _boundingBox;
   }
 
+  public Rectangle2D getBoundingBox2() {
+    if (boundingBox2.get() == null) {
+      boundingBox2.set(lookupBoundingBox2());
+    }
+    return boundingBox2.get();
+  }
+
   protected void clearGeometryCache() {
     _boundingBox = null;
   }
 
-  protected Rectangle2D lookupBoundingBox() {
+  protected java.awt.geom.Rectangle2D lookupBoundingBox() {
     return calcBoundingBox(outlinePoints());
+  }
+
+  protected Rectangle2D lookupBoundingBox2() {
+    return outlinePoints2().getBounds();
   }
   public static double BIG_VAL = Integer.MAX_VALUE / 2.0;
 
-  public static Rectangle2D calcBoundingBox(Point2D[] outlinePoints) {
+  public static java.awt.geom.Rectangle2D calcBoundingBox(Point2D[] outlinePoints) {
     // TOUCH: scala
     double xmin = BIG_VAL;
     double xmax = -BIG_VAL;
@@ -96,12 +122,12 @@ public class GdsElement extends GdsObject {
         ymax = p.getY();
       }
     }
-    Rectangle2D result = new Rectangle2D.Double();
+    java.awt.geom.Rectangle2D result = new java.awt.geom.Rectangle2D.Double();
     result.setFrameFromDiagonal(xmin, ymin, xmax, ymax);
     return result;
   }
 
-  public static Point2D[] calcClosedOutlinePoints(Rectangle2D bounds) {
+  public static Point2D[] calcClosedOutlinePoints(java.awt.geom.Rectangle2D bounds) {
     // TOUCH: scala
     Point2D[] result = new Point2D.Double[5];
     result[0] = new Point2D.Double(bounds.getMinX(), bounds.getMinY());
@@ -112,11 +138,31 @@ public class GdsElement extends GdsObject {
     return result;
   }
 
+  public static GdsPoints calcClosedOutlinePoints(Rectangle2D bounds) {
+    // TODO: move to GdsPoints
+    GdsPoints result = new GdsPoints();
+    result.add(bounds.getMinX(), bounds.getMinY());
+    result.add(bounds.getMinX(), bounds.getMaxY());
+    result.add(bounds.getMaxX(), bounds.getMaxY());
+    result.add(bounds.getMaxX(), bounds.getMinY());
+    result.add(result.get(0).getX(), result.get(0).getY());
+    return result;
+  }
+
   public void setAttributes(Map<String, Object> attrs) {
     if (attrs.containsKey("keyNumber")) {
       _keyNumber = (Integer) attrs.get("keyNumber");
     }
     _vertices = (Point2D[]) attrs.get("vertices");
+    clearGeometryCache();
+  }
+
+  public void setAttributes2(Map<String, Object> attrs) {
+    if (attrs.containsKey("keyNumber")) {
+      _keyNumber = (Integer) attrs.get("keyNumber");
+    }
+    vertices.clear();
+    vertices.addAll((GdsPoints) attrs.get("vertices"));
     clearGeometryCache();
   }
 
@@ -160,6 +206,59 @@ public class GdsElement extends GdsObject {
       getStrans(snl, attrs);
     }
 
+    for (String attrName : integerAttributeNames()) {
+      if (e.hasAttribute(attrName)) {
+        attrs.put(attrName, Integer.parseInt(e.getAttribute(attrName)));
+      }
+    }
+
+    for (String attrName : doubleAttributeNames()) {
+      if (e.hasAttribute(attrName)) {
+        attrs.put(attrName, Double.parseDouble(e.getAttribute(attrName)));
+      }
+    }
+
+    for (String attrName : booleanAttributeNames()) {
+      if (e.hasAttribute(attrName)) {
+        attrs.put(attrName, Boolean.parseBoolean(e.getAttribute(attrName)));
+      }
+    }
+
+    for (String attrName : stringAttributeNames()) {
+      if (e.hasAttribute(attrName)) {
+        attrs.put(attrName, e.getAttribute(attrName));
+      }
+    }
+  }
+
+  private static void elementToAttributes2(
+          Element e,
+          Map<String, Object> attrs) {
+
+    if (!e.hasAttribute("type")) {
+      log.error("missing type field");
+      return;
+    }
+
+    String type = e.getAttribute("type");
+    attrs.put("type", type);
+
+    NodeList vnl = e.getElementsByTagName("vertices");
+    if (vnl.getLength() == 0) {
+      log.error("vertices not found");
+      return;
+    }
+
+    NodeList xynl = e.getElementsByTagName("xy");
+    GdsPoints points = new GdsPoints();
+
+    getXyArray(xynl, points);
+    attrs.put("vertices", points);
+
+    NodeList snl = e.getElementsByTagName("ashape");
+    if (snl.getLength() > 0) {
+      getStrans(snl, attrs);
+    }
 
     for (String attrName : integerAttributeNames()) {
       if (e.hasAttribute(attrName)) {
@@ -206,6 +305,28 @@ public class GdsElement extends GdsObject {
       }
       Point2D pt = new Point2D.Double(x, y);
       points.add(pt);
+    }
+  }
+
+  private static void getXyArray(NodeList xyNodeList, GdsPoints points) {
+    for (int ci = 0; ci < xyNodeList.getLength(); ci++) {
+      Element p = (Element) xyNodeList.item(ci);
+      String xyStr = p.getTextContent();
+      String[] items = StringUtils.split(xyStr, " ");
+      if (items.length != 2) {
+        log.error("invarid xy format");
+        return;
+      }
+      double x, y;
+      try {
+        x = Double.parseDouble(items[0]);
+        y = Double.parseDouble(items[1]);
+      }
+      catch (NumberFormatException ex) {
+        log.error("invarid xy format");
+        return;
+      }
+      points.add(x, y);
     }
   }
 

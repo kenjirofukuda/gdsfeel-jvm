@@ -5,6 +5,8 @@
 package com.gdsfeel.fx.container;
 
 import static com.gdsfeel.elements.GdsElement.BIG_VAL;
+import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 import java.util.Collection;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -19,16 +21,16 @@ import javafx.geometry.Rectangle2D;
  *
  * @author kenjiro
  */
-public class GdsMutablePoints extends SimpleListProperty<GdsPoint> {
+public class GdsPoints extends SimpleListProperty<GdsPoint> {
 
   private SimpleObjectProperty<Rectangle2D> bounds = new SimpleObjectProperty<>(this, "bounds");
 
-  public GdsMutablePoints(Object aThis, String propertyName) {
-    this(aThis, propertyName, FXCollections.<GdsPoint>observableArrayList());
+  public GdsPoints(Object propertyOwner, String propertyName) {
+    this(propertyOwner, propertyName, FXCollections.<GdsPoint>observableArrayList());
   }
 
-  public GdsMutablePoints(Object o, String string, ObservableList<GdsPoint> ol) {
-    super(o, string, ol);
+  public GdsPoints(Object propertyOwner, String propertyName, ObservableList<GdsPoint> ol) {
+    super(propertyOwner, propertyName, ol);
     this.addListener(new InvalidationListener() {
       @Override
       public void invalidated(Observable o) {
@@ -37,7 +39,7 @@ public class GdsMutablePoints extends SimpleListProperty<GdsPoint> {
     });
   }
 
-  public GdsMutablePoints() {
+  public GdsPoints() {
     this(null, "");
   }
 
@@ -99,5 +101,31 @@ public class GdsMutablePoints extends SimpleListProperty<GdsPoint> {
       }
     }
     return new Rectangle2D(xmin, ymin, xmax - xmin, ymax - ymin);
+  }
+
+  private void asAWTPoints(Collection<java.awt.geom.Point2D> outPoints) {
+    for (GdsPoint p : this) {
+      outPoints.add(p.asSwing());
+    }
+  }
+
+  /*
+   * @param at still AffineTransform wait until JDK 8's FX Transform
+   * @param outPoints null - return value is new Object
+   */
+  public GdsPoints transformedPoints(AffineTransform at, GdsPoints outPoints) {
+    GdsPoints result = outPoints;
+    if (outPoints == null) {
+      result = new GdsPoints();
+    }
+    ArrayList<java.awt.geom.Point2D> awtPoints = new ArrayList<>();
+    asAWTPoints(awtPoints);
+    java.awt.geom.Point2D[] src = awtPoints.toArray(new java.awt.geom.Point2D[0]);
+    java.awt.geom.Point2D[] dest = new java.awt.geom.Point2D.Double[getSize()];
+    at.transform(src, 0, dest, 0, src.length);
+    for (java.awt.geom.Point2D p : dest) {
+      result.add(GdsPoint.fromSwing(p));
+    }
+    return result;
   }
 }

@@ -20,7 +20,7 @@ import org.apache.commons.lang.Validate;
  */
 public class GdsItem {
 
-  private GdsMutablePoints coords = new GdsMutablePoints(this, "coords");
+  private GdsPoints coords = new GdsPoints(this, "coords");
   private DoubleProperty mag = new SimpleDoubleProperty(this, "mag", 1.0);
   private DoubleProperty angle = new SimpleDoubleProperty(this, "angle", 0.0);
   private BooleanProperty reflected = new SimpleBooleanProperty(this, "reflected", false);
@@ -45,7 +45,7 @@ public class GdsItem {
     });
   }
 
-  public GdsMutablePoints coordsProperty() {
+  public GdsPoints coordsProperty() {
     return coords;
   }
 

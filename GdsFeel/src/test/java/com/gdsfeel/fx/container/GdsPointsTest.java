@@ -13,9 +13,9 @@ import org.junit.Test;
  *
  * @author kenjiro
  */
-public class GdsMutablePointsTest {
+public class GdsPointsTest {
 
-  public GdsMutablePointsTest() {
+  public GdsPointsTest() {
   }
 
   @Before
@@ -28,7 +28,7 @@ public class GdsMutablePointsTest {
 
   @Test
   public void testAdd() {
-    final GdsMutablePoints buff = new GdsMutablePoints();
+    final GdsPoints buff = new GdsPoints();
     buff.addListener(new ListChangeListener() {
       @Override
       public void onChanged(ListChangeListener.Change change) {

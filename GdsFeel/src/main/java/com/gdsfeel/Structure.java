@@ -5,9 +5,9 @@
 package com.gdsfeel;
 
 import com.gdsfeel.elements.GdsElement;
+import com.gdsfeel.fx.container.GdsPoint;
 import java.awt.Color;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,6 +15,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.geometry.Rectangle2D;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -42,7 +45,8 @@ public class Structure extends GdsObject {
   private static String XML_EXT = "gdsfeelbeta";
   private File directory;
   private boolean loaded;
-  private Rectangle2D boundingBox;
+  private java.awt.geom.Rectangle2D boundingBox;
+  private ObjectProperty<Rectangle2D> boundingBox2;
 
   public Structure(Library library, File directory) {
     super();
@@ -52,20 +56,25 @@ public class Structure extends GdsObject {
     setParent(library);
     this.directory = directory;
 //    elements = new ArrayList<GdsElement>();
+    boundingBox2 = new SimpleObjectProperty<>(this, "boundingBox2");
     loaded = false;
   }
 
-  /***
+  /**
+   * *
    * self owner library instance
-   * @return 
+   *
+   * @return
    */
   public Library getLibrary() {
     return (Library) getParent();
   }
 
-  /***
+  /**
+   * *
    * structure name
-   * @return 
+   *
+   * @return
    */
   public String getName() {
     return FilenameUtils.getBaseName(directory.getName()).toUpperCase();
@@ -75,10 +84,11 @@ public class Structure extends GdsObject {
     return asKey(getName());
   }
 
-  /***
-   * 
+  /**
+   * *
+   *
    * @param structureName
-   * @return map entry key name 
+   * @return map entry key name
    */
   public static String asKey(String structureName) {
     return structureName.toUpperCase();
@@ -100,26 +110,33 @@ public class Structure extends GdsObject {
 
   public boolean hasElement() {
     return getElements().length > 0;
-  }  
-  
-  public boolean isEmpty() {
-    return ! hasElement();
   }
-  
-  public Rectangle2D getBoundingBox() {
+
+  public boolean isEmpty() {
+    return !hasElement();
+  }
+
+  public java.awt.geom.Rectangle2D getBoundingBox() {
     if (boundingBox == null) {
       boundingBox = lookupBoundingBox();
     }
     return boundingBox;
   }
 
-  private Rectangle2D lookupBoundingBox() {
+  public Rectangle2D getBoundingBox2() {
+    if (boundingBox2.get() == null) {
+      boundingBox2.set(lookupBoundingBox2());
+    }
+    return boundingBox2.get();
+  }
+
+  private java.awt.geom.Rectangle2D lookupBoundingBox() {
     double xmin = GdsElement.BIG_VAL;
     double xmax = -GdsElement.BIG_VAL;
     double ymin = GdsElement.BIG_VAL;
     double ymax = -GdsElement.BIG_VAL;
     for (GdsElement e : getElements()) {
-      Rectangle2D r = e.getBoundingBox();
+      java.awt.geom.Rectangle2D r = e.getBoundingBox();
       log.debug(r);
       for (Point2D p : GdsElement.calcClosedOutlinePoints(r)) {
         if (p.getX() < xmin) {
@@ -136,9 +153,35 @@ public class Structure extends GdsObject {
         }
       }
     }
-    Rectangle2D result = new Rectangle2D.Double();
+    java.awt.geom.Rectangle2D result = new java.awt.geom.Rectangle2D.Double();
     result.setFrameFromDiagonal(xmin, ymin, xmax, ymax);
     return result;
+  }
+
+  private Rectangle2D lookupBoundingBox2() {
+    double xmin = GdsElement.BIG_VAL;
+    double xmax = -GdsElement.BIG_VAL;
+    double ymin = GdsElement.BIG_VAL;
+    double ymax = -GdsElement.BIG_VAL;
+    for (GdsElement e : getElements()) {
+      Rectangle2D r = e.getBoundingBox2();
+      log.debug(r);
+      for (GdsPoint p : GdsElement.calcClosedOutlinePoints(r)) {
+        if (p.getX() < xmin) {
+          xmin = p.getX();
+        }
+        if (p.getX() > xmax) {
+          xmax = p.getX();
+        }
+        if (p.getY() < ymin) {
+          ymin = p.getY();
+        }
+        if (p.getY() > ymax) {
+          ymax = p.getY();
+        }
+      }
+    }
+    return new Rectangle2D(xmin, ymin, xmax - xmin, ymax - ymin);
   }
 
   public Color colorForLayerNumber(int layerNumber) {
