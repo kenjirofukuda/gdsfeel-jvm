@@ -2,11 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gdsfeel.ui;
+package com.gdsfeel.fx.ui;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.apache.commons.logging.Log;
@@ -26,9 +28,13 @@ public class GdsFeelApplication extends Application {
 
     uiPane = new GdsFeelUIPane();
     uiPane.init();
-    Scene scene = new Scene(uiPane, 640, 480);
+    Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 
-    primaryStage.setTitle("Hello World!");
+    Scene scene = new Scene(uiPane,
+            primaryScreenBounds.getWidth() * 0.8,
+            primaryScreenBounds.getHeight() * 0.8);
+
+    primaryStage.setTitle("GdsFeel");
     primaryStage.setScene(scene);
     primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
       public void handle(WindowEvent t) {

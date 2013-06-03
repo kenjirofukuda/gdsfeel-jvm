@@ -1,4 +1,4 @@
-package com.gdsfeel.ui;
+package com.gdsfeel.fx.ui;
 
 /**
  * Hello world!

@@ -1,7 +1,7 @@
 /*
  * GdsFeelViewerApp.java
  */
-package com.gdsfeel.ui.swing;
+package com.gdsfeel.ui;
 
 import com.gdsfeel.Config;
 import java.io.File;

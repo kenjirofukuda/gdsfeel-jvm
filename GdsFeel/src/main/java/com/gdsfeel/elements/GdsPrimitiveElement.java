@@ -40,4 +40,15 @@ public class GdsPrimitiveElement extends GdsElement {
   public static Color lookupFrameColor(GdsPrimitiveElement element) {
     return element.getStructure().colorForLayerNumber(element.getLayerNumber());
   }
+
+  public static Color lookupFrameColor(GdsElement element, java.awt.Color fallbackColor) {
+    Color result = fallbackColor;
+    try {
+      GdsPrimitiveElement pe = (GdsPrimitiveElement) element;
+      result = GdsPrimitiveElement.lookupFrameColor(pe);
+    }
+    catch (ClassCastException ex) {
+    }
+    return result;
+  }
 }

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gdsfeel.ui.swing;
+package com.gdsfeel.ui;
 
 import com.gdsfeel.Structure;
 import com.gdsfeel.ViewPort;

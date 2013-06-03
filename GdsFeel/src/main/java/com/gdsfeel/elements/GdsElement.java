@@ -10,7 +10,6 @@ import com.gdsfeel.Structure;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,23 +26,20 @@ import org.w3c.dom.NodeList;
 public class GdsElement extends GdsObject {
 
   private static Log log = LogFactory.getLog(GdsElement.class);
-
   private Point2D[] _vertices;
   private int _keyNumber;
   private Rectangle2D _boundingBox;
   private Map<String, Object> _runtimeMap;
-  
+
   public GdsElement() {
     super();
     _vertices = new Point2D.Double[0];
     _keyNumber = -1;
   }
 
-
   public Structure getStructure() {
     return (Structure) getParent();
   }
-
 
   public Library getLibrary() {
     if (getStructure() == null) {
@@ -52,32 +48,17 @@ public class GdsElement extends GdsObject {
     return getStructure().getLibrary();
   }
 
-
   public int getKeyNumber() {
     return _keyNumber;
   }
 
- 
-  public void setVertices(Collection<Point2D> points) {
-    setVertices(points.toArray(new Point2D.Double[0]));
-  }
-
-
-  public void setVertices(Point2D[] points) {
-    _vertices = points;
-    clearGeometryCache();
-  }
-
-  
   public Point2D[] getVertices() {
     return _vertices;
   }
 
-
   public Point2D[] outlinePoints() {
     return getVertices();
   }
-
 
   public Rectangle2D getBoundingBox() {
     if (_boundingBox == null) {
@@ -86,18 +67,15 @@ public class GdsElement extends GdsObject {
     return _boundingBox;
   }
 
-  
   protected void clearGeometryCache() {
     _boundingBox = null;
   }
 
-
   protected Rectangle2D lookupBoundingBox() {
     return calcBoundingBox(outlinePoints());
   }
-
   public static double BIG_VAL = Integer.MAX_VALUE / 2.0;
-  
+
   public static Rectangle2D calcBoundingBox(Point2D[] outlinePoints) {
     // TOUCH: scala
     double xmin = BIG_VAL;
@@ -105,17 +83,24 @@ public class GdsElement extends GdsObject {
     double ymin = BIG_VAL;
     double ymax = -BIG_VAL;
     for (Point2D p : outlinePoints) {
-      if (p.getX() < xmin) xmin = p.getX();
-      if (p.getX() > xmax) xmax = p.getX();
-      if (p.getY() < ymin) ymin = p.getY();
-      if (p.getY() > ymax) ymax = p.getY();
+      if (p.getX() < xmin) {
+        xmin = p.getX();
+      }
+      if (p.getX() > xmax) {
+        xmax = p.getX();
+      }
+      if (p.getY() < ymin) {
+        ymin = p.getY();
+      }
+      if (p.getY() > ymax) {
+        ymax = p.getY();
+      }
     }
-    Rectangle2D result =  new Rectangle2D.Double();
+    Rectangle2D result = new Rectangle2D.Double();
     result.setFrameFromDiagonal(xmin, ymin, xmax, ymax);
     return result;
   }
 
-  
   public static Point2D[] calcClosedOutlinePoints(Rectangle2D bounds) {
     // TOUCH: scala
     Point2D[] result = new Point2D.Double[5];
@@ -127,8 +112,7 @@ public class GdsElement extends GdsObject {
     return result;
   }
 
-  
-  public void setAttributes(Map<String,Object> attrs) {
+  public void setAttributes(Map<String, Object> attrs) {
     if (attrs.containsKey("keyNumber")) {
       _keyNumber = (Integer) attrs.get("keyNumber");
     }
@@ -136,22 +120,22 @@ public class GdsElement extends GdsObject {
     clearGeometryCache();
   }
 
-
   public static GdsElement fromXml(org.w3c.dom.Element e) {
     Map<String, Object> attrs = new HashMap<>();
     elementToAttributes(e, attrs);
     GdsElement el = newElementFromTypeCode((String) attrs.get("type"));
-    if (el == null) return null;
+    if (el == null) {
+      return null;
+    }
     el.setAttributes(attrs);
     return el;
   }
 
-
   private static void elementToAttributes(
           Element e,
-          Map<String,Object> attrs) {
+          Map<String, Object> attrs) {
 
-    if (! e.hasAttribute("type")) {
+    if (!e.hasAttribute("type")) {
       log.error("missing type field");
       return;
     }
@@ -202,10 +186,9 @@ public class GdsElement extends GdsObject {
     }
   }
 
-
   private static void getXyArray(NodeList xyNodeList, List<Point2D> points) {
-    for (int ci = 0; ci < xyNodeList.getLength() ; ci++) {
-      Element p = (Element)xyNodeList.item(ci);
+    for (int ci = 0; ci < xyNodeList.getLength(); ci++) {
+      Element p = (Element) xyNodeList.item(ci);
       String xyStr = p.getTextContent();
       String[] items = StringUtils.split(xyStr, " ");
       if (items.length != 2) {
@@ -226,18 +209,17 @@ public class GdsElement extends GdsObject {
     }
   }
 
-
   private static void getStrans(
-      NodeList stransNodeList,
-      Map<String,Object> attrs) {
-    for (int ci = 0; ci < stransNodeList.getLength() ; ci++) {
+          NodeList stransNodeList,
+          Map<String, Object> attrs) {
+    for (int ci = 0; ci < stransNodeList.getLength(); ci++) {
       Element e = (Element) stransNodeList.item(ci);
-      for (String attrName : new String[] {"cols", "rows"}) {
+      for (String attrName : new String[]{"cols", "rows"}) {
         if (e.hasAttribute(attrName)) {
           attrs.put(attrName, Integer.parseInt(e.getAttribute(attrName)));
         }
       }
-      for (String attrName : new String[] {"column-spacing", "row-spacing"}) {
+      for (String attrName : new String[]{"column-spacing", "row-spacing"}) {
         if (e.hasAttribute(attrName)) {
           attrs.put(attrName, Double.parseDouble(e.getAttribute(attrName)));
         }
@@ -245,9 +227,8 @@ public class GdsElement extends GdsObject {
     }
   }
 
-
   private static String[] integerAttributeNames() {
-    return new String[] {
+    return new String[]{
       "datatype",
       "pathtype",
       "keyNumber",
@@ -255,30 +236,26 @@ public class GdsElement extends GdsObject {
     };
   }
 
-
   private static String[] doubleAttributeNames() {
-    return new String[] {
+    return new String[]{
       "mag",
       "width",
       "angle"
     };
   }
 
-
   private static String[] booleanAttributeNames() {
-    return new String[] {
+    return new String[]{
       "reflected"
     };
   }
 
-
   private static String[] stringAttributeNames() {
-    return new String[] {
+    return new String[]{
       "sname",
       "text"
     };
   }
-
 
   private static GdsElement newElementFromTypeCode(String type) {
     if (type.equalsIgnoreCase("path")) {
@@ -296,14 +273,14 @@ public class GdsElement extends GdsObject {
     log.warn(type + ": Can't current handled type!!!");
     return null;
   }
-  
+
   public void setRuntimeProperty(String key, Object value) {
     if (_runtimeMap == null) {
       _runtimeMap = new HashMap<>();
     }
     _runtimeMap.put(key, value);
   }
-  
+
   public Object getRuntimeProperty(String key) {
     if (_runtimeMap == null) {
       _runtimeMap = new HashMap<>();

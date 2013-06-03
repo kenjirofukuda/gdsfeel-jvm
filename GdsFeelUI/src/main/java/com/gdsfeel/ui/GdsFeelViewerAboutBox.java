@@ -1,7 +1,7 @@
 /*
  * GdsFeelViewerAboutBox.java
  */
-package com.gdsfeel.ui.swing;
+package com.gdsfeel.ui;
 
 import org.jdesktop.application.Action;
 
@@ -38,13 +38,13 @@ public class GdsFeelViewerAboutBox extends javax.swing.JDialog {
     javax.swing.JLabel imageLabel = new javax.swing.JLabel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-    org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(com.gdsfeel.ui.swing.GdsFeelViewerApp.class).getContext().getResourceMap(GdsFeelViewerAboutBox.class);
+    org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(com.gdsfeel.ui.GdsFeelViewerApp.class).getContext().getResourceMap(GdsFeelViewerAboutBox.class);
     setTitle(resourceMap.getString("title")); // NOI18N
     setModal(true);
     setName("aboutBox"); // NOI18N
     setResizable(false);
 
-    javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(com.gdsfeel.ui.swing.GdsFeelViewerApp.class).getContext().getActionMap(GdsFeelViewerAboutBox.class, this);
+    javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(com.gdsfeel.ui.GdsFeelViewerApp.class).getContext().getActionMap(GdsFeelViewerAboutBox.class, this);
     closeButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
     closeButton.setName("closeButton"); // NOI18N
 
