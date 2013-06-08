@@ -120,9 +120,9 @@ public class GdsPath extends GdsPrimitiveElement {
 
     for (int i = 1; i < numpoints - 1; i++) {
       deltaxy = getDeltaXY(hw,
-              getVertices()[i - 1],
-              getVertices()[i],
-              getVertices()[i + 1]);
+                           getVertices()[i - 1],
+                           getVertices()[i],
+                           getVertices()[i + 1]);
       points[i].setLocation(
               getVertices()[i].getX() + deltaxy.getX(),
               getVertices()[i].getY() + deltaxy.getY());
@@ -132,7 +132,7 @@ public class GdsPath extends GdsPrimitiveElement {
     }
 
     deltaxy = getEndDeltaXY(hw, getVertices()[numpoints - 2],
-            getVertices()[numpoints - 1]);
+                            getVertices()[numpoints - 1]);
     if (_pathtype == 0) {
       points[numpoints - 1].setLocation(
               getVertices()[numpoints - 1].getX() + deltaxy.getX(),
@@ -200,9 +200,9 @@ public class GdsPath extends GdsPrimitiveElement {
 
     for (int i = 1; i < numpoints - 1; i++) {
       deltaxy = getDeltaXY(hw,
-              self.get(i - 1),
-              self.get(i),
-              self.get(i + 1));
+                           self.get(i - 1),
+                           self.get(i),
+                           self.get(i + 1));
       points[i] = GdsPoint.xy(
               self.get(i).getX() + deltaxy.getX(),
               self.get(i).getY() + deltaxy.getY());
@@ -212,7 +212,7 @@ public class GdsPath extends GdsPrimitiveElement {
     }
 
     deltaxy = getEndDeltaXY(hw, self.get(numpoints - 2),
-            last);
+                            last);
     if (pathtype == 0) {
       points[numpoints - 1] = GdsPoint.xy(
               last.getX() + deltaxy.getX(),

@@ -31,8 +31,8 @@ public class GdsFeelApplication extends Application {
     Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 
     Scene scene = new Scene(uiPane,
-            primaryScreenBounds.getWidth() * 0.8,
-            primaryScreenBounds.getHeight() * 0.8);
+                            primaryScreenBounds.getWidth() * 0.8,
+                            primaryScreenBounds.getHeight() * 0.8);
 
     primaryStage.setTitle("GdsFeel");
     primaryStage.setScene(scene);
@@ -67,6 +67,7 @@ public class GdsFeelApplication extends Application {
    * @param args the command line arguments
    */
   public static void main(String[] args) {
+    System.setProperty("com.gdsfeel.useFxProperty", "true");
     launch(args);
   }
 }

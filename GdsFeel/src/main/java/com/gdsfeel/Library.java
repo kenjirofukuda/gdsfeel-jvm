@@ -5,7 +5,6 @@
 package com.gdsfeel;
 
 import com.gdsfeel.util.Archiver;
-import java.awt.Color;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileReader;
@@ -150,7 +149,7 @@ public class Library extends GdsObject {
     layers.loadFromXmlFile(layersFile());
   }
 
-  public Color colorForLayerNumber(int layerNumber) {
+  public java.awt.Color colorForLayerNumber(int layerNumber) {
     tryOpen();
     return layers.atNumber(layerNumber).getColor();
   }
@@ -193,7 +192,7 @@ public class Library extends GdsObject {
   private File extractedFolder() {
     if (extractedFolder == null) {
       extractedFolder = new File(Library.extractAreaFolder(),
-              getNameWithExtension());
+                                 getNameWithExtension());
     }
     return extractedFolder;
   }
@@ -232,7 +231,7 @@ public class Library extends GdsObject {
 
   private static File[] getFiles(File pathToGdsFeel) {
     return (File[]) FileUtils.listFiles(pathToGdsFeel,
-            FileFilterUtils.asFileFilter(new FileFilter() {
+                                        FileFilterUtils.asFileFilter(new FileFilter() {
       @Override
       public boolean accept(File pathname) {
         return isValid(pathname);

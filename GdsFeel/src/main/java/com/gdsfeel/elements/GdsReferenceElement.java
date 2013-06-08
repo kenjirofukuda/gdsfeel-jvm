@@ -4,6 +4,7 @@
  */
 package com.gdsfeel.elements;
 
+import com.gdsfeel.Config;
 import com.gdsfeel.Structure;
 import com.gdsfeel.fx.container.GdsPoint;
 import com.gdsfeel.fx.container.GdsPoints;
@@ -99,10 +100,10 @@ public class GdsReferenceElement extends GdsElement {
     double sinRad = Math.sin(rad);
     double a = _mag * cosRad;      // x scale
     double b = -_mag * sinRad;      // x shearing
-    double c = getOrigin().getX();  // x trans
+    double c = Config.useFxProperty() ? getOrigin2().getX() : getOrigin().getX();  // x trans
     double d = _mag * sinRad;      // y scale
     double e = _mag * cosRad;      // y shearing
-    double f = getOrigin().getY();  // y trans
+    double f = Config.useFxProperty() ? getOrigin2().getY() : getOrigin().getY();  // y trans
     /*
      * GDSII understands only the Y mirroring
      */

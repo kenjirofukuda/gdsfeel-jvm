@@ -57,7 +57,7 @@ public class GdsFeelUIPane extends StackPane {
   private SplitPane splitPane;
   private ListView<String> librariesListView;
   private ListView<String> structuewsListView;
-  private StructureSceneGraphPane structurePane;
+  private StructureBasePane structurePane;
   private Stage itemStage;
   private Station station;
 
@@ -114,6 +114,7 @@ public class GdsFeelUIPane extends StackPane {
     MenuItem newLibrary = new MenuItem("New Library...");
     MenuItem quit = new MenuItem("Quit");
     quit.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
       public void handle(ActionEvent t) {
         log.debug("Quit from menu");
         confirmQuit(t);
@@ -155,8 +156,17 @@ public class GdsFeelUIPane extends StackPane {
     return stage;
   }
 
+  private boolean isUseSceneGraph() {
+    return false;
+  }
+
   private void addSplitPane() {
-    structurePane = new StructureSceneGraphPane();
+    if (isUseSceneGraph()) {
+      structurePane = new StructureSceneGraphPane();
+    }
+    else {
+      structurePane = new StructureCanvasPane();
+    }
     HBox viewControls = createViewControls();
     VBox structureArea = new VBox();
     VBox.setVgrow(structurePane, Priority.ALWAYS);
@@ -181,7 +191,9 @@ public class GdsFeelUIPane extends StackPane {
   private HBox createBrowserView() {
     HBox box = new HBox();
     librariesListView = new ListView();
+//    librariesListView.setPrefWidth(60);
     structuewsListView = new ListView();
+//    structuewsListView.setPrefWidth(60);
     box.getChildren().addAll(
             librariesListView, structuewsListView);
     return box;
@@ -227,7 +239,7 @@ public class GdsFeelUIPane extends StackPane {
             new ChangeListener<String>() {
       @Override
       public void changed(ObservableValue<? extends String> ov, String t, String t1) {
-        log.info(t1);
+        log.debug(t1);
         if (StringUtils.isEmpty(t1)) {
           structurePane.setStructure(null);
           return;

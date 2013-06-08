@@ -2,11 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.gdsfeel.elements;
 
 import java.awt.geom.AffineTransform;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,13 +16,13 @@ import org.apache.commons.logging.LogFactory;
  * @author kenjiro
  */
 public class GdsAref extends GdsSref {
+
   private static Log log = LogFactory.getLog(GdsAref.class);
   private int _rowCount;
   private int _columnCount;
   private double _rowStep;
   private double _columnStep;
   private AffineTransform[] _offsetTransforms;
-
 
   public GdsAref() {
     super();
@@ -35,54 +33,53 @@ public class GdsAref extends GdsSref {
     _offsetTransforms = null;
   }
 
-
   public int getRowCount() {
     return _rowCount;
   }
 
-
   public void setRowCount(int newCount) {
-    if (_rowCount == newCount) return;
+    if (_rowCount == newCount) {
+      return;
+    }
     _rowCount = newCount;
     clearGeometryCache();
   }
-
 
   public int getColumnCount() {
     return _columnCount;
   }
 
-
   public void setColumnCount(int newCount) {
-    if (_columnCount == newCount) return;
+    if (_columnCount == newCount) {
+      return;
+    }
     _columnCount = newCount;
     clearGeometryCache();
   }
-
 
   public double getRowStep() {
     return _rowStep;
   }
 
-
   public void setRowStep(double newStep) {
-    if (_rowStep == newStep) return;
+    if (_rowStep == newStep) {
+      return;
+    }
     _rowStep = newStep;
     clearGeometryCache();
   }
-
 
   public double getColumnStep() {
     return _columnStep;
   }
 
-
   public void setColumnStep(double newStep) {
-    if (_columnStep == newStep) return;
+    if (_columnStep == newStep) {
+      return;
+    }
     _columnStep = newStep;
     clearGeometryCache();
   }
-
 
   public AffineTransform[] getOffsetTransforms() {
     if (_offsetTransforms == null) {
@@ -91,11 +88,9 @@ public class GdsAref extends GdsSref {
     return _offsetTransforms;
   }
 
-
   public boolean canRepeat() {
     return getRowCount() > 1 || getColumnCount() > 1;
   }
-
 
   private AffineTransform[] lookupOffsetTransforms() {
     List<AffineTransform> transforms = new ArrayList<>();
@@ -111,7 +106,6 @@ public class GdsAref extends GdsSref {
     return transforms.toArray(new AffineTransform[0]);
   }
 
-
   private AffineTransform[] lookupTransforms() {
     List<AffineTransform> transforms = new ArrayList<>();
     for (int colIndex = 0; colIndex < getColumnCount(); colIndex++) {
@@ -126,7 +120,6 @@ public class GdsAref extends GdsSref {
     return transforms.toArray(new AffineTransform[0]);
   }
 
-
 //  public Rectangle2D[] lookupBoundingBoxes() {
 //    List<Rectangle2D> boundsa = new ArrayList<Rectangle2D>();
 //    for (AffineTransform mat : getOffsetTransforms()) {
@@ -134,16 +127,14 @@ public class GdsAref extends GdsSref {
 //    }
 //    return boundsa.toArray(new Rectangle2D[0]);
 //  }
-
   @Override
   protected void clearGeometryCache() {
     super.clearGeometryCache();
     _offsetTransforms = null;
   }
 
-  
   @Override
-  public void setAttributes(Map<String,Object> attrs) {
+  public void setAttributes(Map<String, Object> attrs) {
     super.setAttributes(attrs);
     if (attrs.containsKey("cols")) {
       _columnCount = (Integer) attrs.get("cols");
@@ -159,4 +150,3 @@ public class GdsAref extends GdsSref {
     }
   }
 }
-

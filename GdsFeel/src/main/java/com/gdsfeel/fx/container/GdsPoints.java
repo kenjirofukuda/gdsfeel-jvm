@@ -6,7 +6,6 @@ package com.gdsfeel.fx.container;
 
 import static com.gdsfeel.elements.GdsElement.BIG_VAL;
 import java.awt.geom.AffineTransform;
-import java.util.ArrayList;
 import java.util.Collection;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -16,6 +15,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Rectangle2D;
+import org.apache.commons.lang.Validate;
 
 /**
  *
@@ -44,8 +44,7 @@ public class GdsPoints extends SimpleListProperty<GdsPoint> {
   }
 
   private void handleInvalidate(Observable o) {
-    Rectangle2D r = calcBoundingBox(this);
-    bounds.set(r);
+    bounds.set(null);
   }
 
   public ReadOnlyObjectProperty<Rectangle2D> boundsProperty() {
@@ -53,6 +52,10 @@ public class GdsPoints extends SimpleListProperty<GdsPoint> {
   }
 
   public Rectangle2D getBounds() {
+    if (bounds.get() == null) {
+      Rectangle2D r = calcBoundingBox(this);
+      bounds.set(r);
+    }
     return bounds.get();
   }
 
@@ -81,7 +84,9 @@ public class GdsPoints extends SimpleListProperty<GdsPoint> {
   }
 
   public static Rectangle2D calcBoundingBox(Collection<GdsPoint> outlinePoints) {
-    // TOUCH: scala
+    if (outlinePoints.isEmpty()) {
+      return Rectangle2D.EMPTY;
+    }
     double xmin = BIG_VAL;
     double xmax = -BIG_VAL;
     double ymin = BIG_VAL;
@@ -100,6 +105,8 @@ public class GdsPoints extends SimpleListProperty<GdsPoint> {
         ymax = p.getY();
       }
     }
+    Validate.isTrue((xmax - xmin) >= 0, String.format("(%f - %f) >= 0", xmax, xmin));
+    Validate.isTrue((ymax - ymin) >= 0, String.format("(%f - %f) >= 0", ymax, ymin));
     return new Rectangle2D(xmin, ymin, xmax - xmin, ymax - ymin);
   }
 
@@ -118,14 +125,30 @@ public class GdsPoints extends SimpleListProperty<GdsPoint> {
     if (outPoints == null) {
       result = new GdsPoints();
     }
-    ArrayList<java.awt.geom.Point2D> awtPoints = new ArrayList<>();
-    asAWTPoints(awtPoints);
-    java.awt.geom.Point2D[] src = awtPoints.toArray(new java.awt.geom.Point2D[0]);
-    java.awt.geom.Point2D[] dest = new java.awt.geom.Point2D.Double[getSize()];
-    at.transform(src, 0, dest, 0, src.length);
-    for (java.awt.geom.Point2D p : dest) {
-      result.add(GdsPoint.fromSwing(p));
+    int numPoints = getSize();
+    int allocSize = numPoints * 2;
+    double[] outlineXY = new double[allocSize];
+    this.flattenXY(outlineXY);
+    double[] xy = new double[allocSize];
+    at.transform(outlineXY, 0, xy, 0, numPoints);
+    GdsPoint[] l = new GdsPoint[numPoints];
+    for (int i = 0; i < numPoints; i++) {
+      int ai = i * 2;
+      l[i] = GdsPoint.xy(xy[ai], xy[ai + 1]);
     }
+    result.addAll(l);
     return result;
+  }
+
+  /*
+   * @parama xy must specify new double[length * 2] area
+   */
+  public void flattenXY(double[] xy) {
+    for (int i = 0; i < getSize(); i++) {
+      GdsPoint p = get(i);
+      int ai = i * 2;
+      xy[ai] = p.getX();
+      xy[ai + 1] = p.getY();
+    }
   }
 }

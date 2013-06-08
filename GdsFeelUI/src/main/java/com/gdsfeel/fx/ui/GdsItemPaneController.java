@@ -44,8 +44,8 @@ public class GdsItemPaneController implements Initializable {
    */
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    log.info("url = " + url);
-    log.info("rb = " + rb);
+    log.debug("url = " + url);
+    log.debug("rb = " + rb);
     gdsItem = new GdsItem();
     installDebugListener(gdsItem);
     installKeyFilter(magTF);

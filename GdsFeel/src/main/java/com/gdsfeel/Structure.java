@@ -102,14 +102,19 @@ public class Structure extends GdsObject {
     element.setParent(null);
   }
 
-  public GdsElement[] getElements() {
+  public GdsElement[] getElementArray() {
     load();
-    List<GdsObject> list = Arrays.asList(getChildren());
-    return (GdsElement[]) list.toArray(new GdsElement[0]);
+    List<GdsObject> list =
+            Arrays.asList(getChildren());
+    return list.toArray(new GdsElement[0]);
+  }
+
+  public Collection<GdsElement> getElements() {
+    return Arrays.asList(getElementArray());
   }
 
   public boolean hasElement() {
-    return getElements().length > 0;
+    return getElementArray().length > 0;
   }
 
   public boolean isEmpty() {
@@ -135,7 +140,7 @@ public class Structure extends GdsObject {
     double xmax = -GdsElement.BIG_VAL;
     double ymin = GdsElement.BIG_VAL;
     double ymax = -GdsElement.BIG_VAL;
-    for (GdsElement e : getElements()) {
+    for (GdsElement e : getElementArray()) {
       java.awt.geom.Rectangle2D r = e.getBoundingBox();
       log.debug(r);
       for (Point2D p : GdsElement.calcClosedOutlinePoints(r)) {
@@ -163,7 +168,7 @@ public class Structure extends GdsObject {
     double xmax = -GdsElement.BIG_VAL;
     double ymin = GdsElement.BIG_VAL;
     double ymax = -GdsElement.BIG_VAL;
-    for (GdsElement e : getElements()) {
+    for (GdsElement e : getElementArray()) {
       Rectangle2D r = e.getBoundingBox2();
       log.debug(r);
       for (GdsPoint p : GdsElement.calcClosedOutlinePoints(r)) {
@@ -197,6 +202,9 @@ public class Structure extends GdsObject {
 
   private void forceLoad() {
     removeAllChild();
+//    boolean fxLoading =
+//            System.getProperty("com.gdsfeel.useFxProperty", "false")
+//            .equalsIgnoreCase("true");
     DocumentBuilderFactory df = DocumentBuilderFactory.newInstance();
     try {
       DocumentBuilder b = df.newDocumentBuilder();
@@ -206,7 +214,13 @@ public class Structure extends GdsObject {
 
       for (int i = 0; i < nl.getLength(); i++) {
         Element e = (Element) nl.item(i);
-        GdsElement el = GdsElement.fromXml(e);
+        GdsElement el = GdsElement.fromXml(e);;
+//        if (fxLoading) {
+//          el = GdsElement.fromXml2(e);
+//        }
+//        else {
+//          el = GdsElement.fromXml(e);
+//        }
         if (el == null) {
           continue;
         }
@@ -226,7 +240,7 @@ public class Structure extends GdsObject {
 
   private File generationFileAt(int number) {
     File f = new File(directory,
-            StringUtils.join(new String[]{
+                      StringUtils.join(new String[]{
       getName(), Integer.toString(number), XML_EXT}, "."));
     return f;
   }
@@ -234,8 +248,8 @@ public class Structure extends GdsObject {
   private List<Integer> generationNumbers() {
     List<Integer> numbers = new ArrayList<>();
     Collection<File> files = FileUtils.listFiles(directory,
-            new String[]{XML_EXT},
-            false);
+                                                 new String[]{XML_EXT},
+                                                 false);
     Validate.notEmpty(files, "structure=" + this
             + ", " + "directory=" + directory);
     for (File f : files) {

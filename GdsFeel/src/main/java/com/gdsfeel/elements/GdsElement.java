@@ -4,12 +4,14 @@
  */
 package com.gdsfeel.elements;
 
+import com.gdsfeel.Config;
 import com.gdsfeel.GdsObject;
 import com.gdsfeel.Library;
 import com.gdsfeel.Structure;
 import com.gdsfeel.fx.container.GdsPoints;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -153,16 +155,14 @@ public class GdsElement extends GdsObject {
     if (attrs.containsKey("keyNumber")) {
       _keyNumber = (Integer) attrs.get("keyNumber");
     }
-    _vertices = (Point2D[]) attrs.get("vertices");
-    clearGeometryCache();
-  }
-
-  public void setAttributes2(Map<String, Object> attrs) {
-    if (attrs.containsKey("keyNumber")) {
-      _keyNumber = (Integer) attrs.get("keyNumber");
+    if (Config.useFxProperty()) {
+      vertices.clear();
+      vertices.addAll((GdsPoints) attrs.get("vertices"));
     }
-    vertices.clear();
-    vertices.addAll((GdsPoints) attrs.get("vertices"));
+    else {
+      _vertices = (Point2D[]) attrs.get("vertices");
+    }
+
     clearGeometryCache();
   }
 
@@ -196,64 +196,18 @@ public class GdsElement extends GdsObject {
     }
 
     NodeList xynl = e.getElementsByTagName("xy");
-    List<Point2D> points = new ArrayList<>();
+    if (Config.useFxProperty()) {
+      GdsPoints points = new GdsPoints();
 
-    getXyArray(xynl, points);
-    attrs.put("vertices", points.toArray(new Point2D.Double[0]));
-
-    NodeList snl = e.getElementsByTagName("ashape");
-    if (snl.getLength() > 0) {
-      getStrans(snl, attrs);
+      getXyArray(xynl, points);
+      attrs.put("vertices", points);
     }
+    else {
+      List<Point2D> points = new ArrayList<>();
 
-    for (String attrName : integerAttributeNames()) {
-      if (e.hasAttribute(attrName)) {
-        attrs.put(attrName, Integer.parseInt(e.getAttribute(attrName)));
-      }
+      getXyArray(xynl, points);
+      attrs.put("vertices", points.toArray(new Point2D.Double[0]));
     }
-
-    for (String attrName : doubleAttributeNames()) {
-      if (e.hasAttribute(attrName)) {
-        attrs.put(attrName, Double.parseDouble(e.getAttribute(attrName)));
-      }
-    }
-
-    for (String attrName : booleanAttributeNames()) {
-      if (e.hasAttribute(attrName)) {
-        attrs.put(attrName, Boolean.parseBoolean(e.getAttribute(attrName)));
-      }
-    }
-
-    for (String attrName : stringAttributeNames()) {
-      if (e.hasAttribute(attrName)) {
-        attrs.put(attrName, e.getAttribute(attrName));
-      }
-    }
-  }
-
-  private static void elementToAttributes2(
-          Element e,
-          Map<String, Object> attrs) {
-
-    if (!e.hasAttribute("type")) {
-      log.error("missing type field");
-      return;
-    }
-
-    String type = e.getAttribute("type");
-    attrs.put("type", type);
-
-    NodeList vnl = e.getElementsByTagName("vertices");
-    if (vnl.getLength() == 0) {
-      log.error("vertices not found");
-      return;
-    }
-
-    NodeList xynl = e.getElementsByTagName("xy");
-    GdsPoints points = new GdsPoints();
-
-    getXyArray(xynl, points);
-    attrs.put("vertices", points);
 
     NodeList snl = e.getElementsByTagName("ashape");
     if (snl.getLength() > 0) {
@@ -410,5 +364,28 @@ public class GdsElement extends GdsObject {
       return _runtimeMap.get(key);
     }
     return null;
+  }
+
+  public static void splitPlimitivesAndReferences(
+          GdsElement[] elements,
+          ArrayList<GdsElement> primitives,
+          ArrayList<GdsElement> references) {
+    for (GdsElement e : elements) {
+      if (e instanceof GdsSref || e instanceof GdsAref) {
+        references.add(e);
+      }
+      else {
+        primitives.add(e);
+      }
+    }
+  }
+
+  public static void splitPlimitivesAndReferences(
+          Collection<GdsElement> elements,
+          ArrayList<GdsElement> primitives,
+          ArrayList<GdsElement> references) {
+    splitPlimitivesAndReferences(elements.toArray(new GdsElement[0]),
+                                 primitives, references);
+
   }
 }

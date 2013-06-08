@@ -10,13 +10,11 @@ import com.gdsfeel.elements.GdsElement;
 import com.gdsfeel.elements.GdsPath;
 import com.gdsfeel.elements.GdsPrimitiveElement;
 import com.gdsfeel.elements.GdsSref;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
-import java.awt.geom.Point2D;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -24,12 +22,12 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author kenjiro
  */
-class GdsElementDrawer<T extends GdsElement> {
+public class GdsElementDrawer<T extends GdsElement> {
 
   private static Log log = LogFactory.getLog(GdsElementDrawer.class);
   protected T element;
   protected StructureView view;
-  private Color _frameColor;
+  private java.awt.Color _frameColor;
   protected GeneralPath _framePath;
   private Paint _paint;
 
@@ -39,7 +37,7 @@ class GdsElementDrawer<T extends GdsElement> {
   }
 
   public final void fullDrawOn(Graphics2D g) {
-    Color savedColor = g.getColor();
+    java.awt.Color savedColor = g.getColor();
     drawOn(g);
     g.setColor(savedColor);
   }
@@ -69,7 +67,7 @@ class GdsElementDrawer<T extends GdsElement> {
     return false; // _paint != null;
   }
 
-  public Color getFrameColor() {
+  public java.awt.Color getFrameColor() {
     if (_frameColor == null) {
       _frameColor = lookupFrameColor();
     }
@@ -81,8 +79,8 @@ class GdsElementDrawer<T extends GdsElement> {
     return _paint;
   }
 
-  private Color lookupFrameColor() {
-    Color result = Color.white;
+  private java.awt.Color lookupFrameColor() {
+    java.awt.Color result = java.awt.Color.white;
     try {
       GdsPrimitiveElement pe = (GdsPrimitiveElement) element;
       result = GdsPrimitiveElement.lookupFrameColor(pe);
@@ -110,7 +108,7 @@ class GdsElementDrawer<T extends GdsElement> {
     g.fill(s);
   }
 
-  public void strokePoints(Graphics2D g, Point2D[] points, AffineTransform tx) {
+  public void strokePoints(Graphics2D g, java.awt.geom.Point2D[] points, AffineTransform tx) {
     if (_framePath == null) {
       _framePath = new GeneralPath();
       addPoints(_framePath, points);
@@ -122,13 +120,9 @@ class GdsElementDrawer<T extends GdsElement> {
     g.draw(s);
   }
 
-  public void strokePoints(Graphics2D g, Point2D[] points) {
-    strokePoints(g, points, null);
-  }
-
-  protected void addPoints(GeneralPath path, Point2D[] points) {
+  protected void addPoints(GeneralPath path, java.awt.geom.Point2D[] points) {
     int index = 0;
-    for (Point2D pt : points) {
+    for (java.awt.geom.Point2D pt : points) {
       if (index == 0) {
         path.moveTo(pt.getX(), pt.getY());
       }
@@ -235,13 +229,15 @@ class GdsBoundaryDrawer extends GdsElementDrawer<GdsBoundary> {
 
 class GdsSrefDrawer extends GdsElementDrawer<GdsSref> {
 
+  private static Log log = LogFactory.getLog(GdsSrefDrawer.class);
+
   GdsSrefDrawer() {
     super();
   }
 
   @Override
-  public Color getFrameColor() {
-    return Color.LIGHT_GRAY;
+  public java.awt.Color getFrameColor() {
+    return java.awt.Color.LIGHT_GRAY;
   }
 
   @Override
@@ -250,7 +246,7 @@ class GdsSrefDrawer extends GdsElementDrawer<GdsSref> {
       return;
     }
     view.getViewPort().pushTransform(element.getTransform());
-    view.drawElements(g, element.getReferenceStructure().getElements());
+    view.drawElements(g, element.getReferenceStructure().getElementArray());
     view.getViewPort().popTransform();
   }
 }
@@ -270,7 +266,7 @@ class GdsArefDrawer extends GdsElementDrawer<GdsAref> {
     view.getViewPort().pushTransform(element.getTransform());
     for (AffineTransform t : element.getOffsetTransforms()) {
       view.getViewPort().pushTransform(t);
-      view.drawElements(g, element.getReferenceStructure().getElements());
+      view.drawElements(g, element.getReferenceStructure().getElementArray());
       view.getViewPort().popTransform();
     }
     view.getViewPort().popTransform();

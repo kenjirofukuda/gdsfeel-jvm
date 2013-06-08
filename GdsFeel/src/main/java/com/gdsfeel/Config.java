@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.gdsfeel;
 
 import java.io.File;
@@ -33,7 +32,7 @@ public class Config {
     String result = "";
     try {
       conf = new PropertiesConfiguration(Config.getConfigFile());
-      if (! conf.getFile().exists()) {
+      if (!conf.getFile().exists()) {
         conf.addProperty("project.path", "");
         conf.save();
       }
@@ -44,7 +43,6 @@ public class Config {
     }
     return result;
   }
-
 
   public static void setProjectFolder(File gdsFeelFolder) {
     PropertiesConfiguration conf;
@@ -57,18 +55,19 @@ public class Config {
       log.fatal(ex);
     }
   }
-  
 
   public static boolean isSetupCompleted() {
-    return getProjectFolder().isDirectory() 
-        && getProjectFolder().canWrite(); 
+    return getProjectFolder().isDirectory()
+            && getProjectFolder().canWrite();
   }
 
-  
   public static File getConfigFile() {
     File configDir = new File(SystemUtils.getUserHome(), ".GdsFeel");
     File configFile = new File(configDir, "main.properties");
     return configFile;
   }
 
+  public static boolean useFxProperty() {
+    return System.getProperty("com.gdsfeel.useFxProperty", "false").equalsIgnoreCase("true");
+  }
 }

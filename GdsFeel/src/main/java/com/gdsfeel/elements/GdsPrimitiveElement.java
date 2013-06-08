@@ -4,7 +4,6 @@
  */
 package com.gdsfeel.elements;
 
-import java.awt.Color;
 import java.util.Map;
 
 /**
@@ -37,12 +36,14 @@ public class GdsPrimitiveElement extends GdsElement {
     }
   }
 
-  public static Color lookupFrameColor(GdsPrimitiveElement element) {
+  public static java.awt.Color lookupFrameColor(GdsPrimitiveElement element) {
     return element.getStructure().colorForLayerNumber(element.getLayerNumber());
   }
 
-  public static Color lookupFrameColor(GdsElement element, java.awt.Color fallbackColor) {
-    Color result = fallbackColor;
+  public static java.awt.Color lookupFrameColor(
+          GdsElement element,
+          java.awt.Color fallbackColor) {
+    java.awt.Color result = fallbackColor;
     try {
       GdsPrimitiveElement pe = (GdsPrimitiveElement) element;
       result = GdsPrimitiveElement.lookupFrameColor(pe);
