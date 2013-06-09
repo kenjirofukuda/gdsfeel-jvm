@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.gdsfeel;
 
 import java.util.ArrayList;
@@ -13,57 +12,52 @@ import org.apache.commons.lang.Validate;
  *
  * @author kenjiro
  */
-public class GdsObject {
+public class GdsObject<P extends GdsObject, E extends GdsObject> {
 
-  private GdsObject _parent;
-  private List<GdsObject> _children;
+  private P parent;
+  private List<E> children;
+  private E[] dummy;
 
   public GdsObject() {
     super();
-    _children = new ArrayList<>();
-    _parent = null;
+    children = new ArrayList<>();
+    parent = null;
   }
 
-
-  public GdsObject getParent() {
-    return _parent;
+  public P getParent() {
+    return parent;
   }
 
-
-  public void setParent(GdsObject parent) {
+  public void setParent(P parent) {
     if (parent == null) {
-      if (_parent != null) {
-        _parent.removeChild(this);
-        _parent = null;
+      if (this.parent != null) {
+        this.parent.removeChild(this);
+        this.parent = null;
       }
     }
     else {
-      _parent = parent;
+      this.parent = parent;
       parent.addChild(this);
     }
   }
 
-
-  private void addChild(GdsObject child) {
+  void addChild(E child) {
     Validate.notNull(child);
-    _children.add(child);
+    children.add(child);
   }
 
-
-  private void removeChild(GdsObject child) {
+  void removeChild(E child) {
     Validate.notNull(child);
-    _children.remove(child);
+    children.remove(child);
   }
-
 
   protected void removeAllChild() {
-    for (GdsObject o : _children) {
+    for (GdsObject o : children) {
       o.setParent(null);
     }
   }
 
-
-  public GdsObject[] getChildren() {
-    return _children.toArray(new GdsObject[0]);
+  public List<E> getChildren() {
+    return children;
   }
 }

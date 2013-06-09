@@ -12,6 +12,13 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.NoninvertibleTransformException;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import org.apache.commons.lang.Validate;
@@ -22,7 +29,8 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author kenjiro
  */
-public class StructureView extends JPanel implements ComponentListener {
+public class StructureView extends JPanel
+        implements ComponentListener, MouseWheelListener, MouseMotionListener {
 
   private static Log log = LogFactory.getLog(StructureView.class);
   private ViewPort viewPort;
@@ -36,9 +44,14 @@ public class StructureView extends JPanel implements ComponentListener {
     Validate.notNull(structure);
     this.structure = structure;
     if (structure == null) {
+      removeComponentListener(this);
+      removeMouseWheelListener(this);
+      removeMouseMotionListener(this);
       return;
     }
     addComponentListener(this);
+    addMouseWheelListener(this);
+    addMouseMotionListener(this);
     this.structure.load();
     viewPort = new ViewPort(structure);
     viewPort.setPortSize(getSize());
@@ -134,5 +147,41 @@ public class StructureView extends JPanel implements ComponentListener {
 
   private Color getPenColor() {
     return Color.lightGray;
+  }
+
+  @Override
+  public void mouseWheelMoved(MouseWheelEvent e) {
+    double zoomBase = 1.0;
+    double zoomUnit = 0.02;
+    try {
+      AffineTransform tx = getViewPort().getTransform().createInverse();
+      Point2D p = tx.transform(new Point2D.Double(e.getX(), e.getY()), null);
+      getViewPort().setCenter(p.getX(), p.getY());
+      getViewPort().setPortCenter(e.getX(), e.getY());
+      getViewPort().zoom(zoomBase + (zoomUnit * e.getWheelRotation()));
+      repaint();
+    }
+    catch (NoninvertibleTransformException ex) {
+    }
+
+  }
+
+  @Override
+  public void mouseDragged(MouseEvent e) {
+  }
+
+  @Override
+  public void mouseMoved(MouseEvent e) {
+    try {
+      AffineTransform tx = getViewPort().getTransform().createInverse();
+      Point2D p = tx.transform(new Point2D.Double(e.getX(), e.getY()), null);
+      log.info("cursor = " + p);
+//      log.info("center offset = " + new Point2D.Double(
+//              (p.getX() - getViewPort().getCenter().getX()),
+//              (p.getY() - getViewPort().getCenter().getY())));
+    }
+    catch (NoninvertibleTransformException ex) {
+    }
+
   }
 }

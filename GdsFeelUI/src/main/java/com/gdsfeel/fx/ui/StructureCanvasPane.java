@@ -4,17 +4,22 @@
  */
 package com.gdsfeel.fx.ui;
 
-import com.gdsfeel.ViewPort;
 import com.gdsfeel.elements.GdsElement;
+import com.gdsfeel.fx.ViewPort;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.NoninvertibleTransformException;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collection;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -49,6 +54,23 @@ public class StructureCanvasPane extends StructureBasePane {
     this.widthProperty().addListener(cl);
     this.heightProperty().addListener(cl);
     getChildren().add(root);
+    this.setOnScroll(new EventHandler<ScrollEvent>() {
+      @Override
+      public void handle(ScrollEvent event) {
+        double zoomBase = 1.0;
+        double zoomUnit = 0.02;
+        try {
+          AffineTransform tx = getViewPort().getTransform().createInverse();
+          Point2D p = tx.transform(new Point2D.Double(event.getX(), event.getY()), null);
+          getViewPort().setCenter(p.getX(), p.getY());
+          getViewPort().setPortCenter(event.getX(), event.getY());
+          getViewPort().zoom(zoomBase + (zoomUnit * event.getDeltaY()));
+          repaint();
+        }
+        catch (NoninvertibleTransformException ex) {
+        }
+      }
+    });
   }
 
   public ViewPort getViewPort() {
@@ -57,7 +79,7 @@ public class StructureCanvasPane extends StructureBasePane {
 
   private void handlePaneResized() {
     if (getViewPort() != null) {
-      getViewPort().fit2();
+      getViewPort().fit();
     }
     repaint();
   }
@@ -67,6 +89,7 @@ public class StructureCanvasPane extends StructureBasePane {
     log.debug(this);
     getViewPort().portWidthProperty().unbind();
     getViewPort().portHeightProperty().unbind();
+    viewPort.set(null);
   }
 
   @Override
@@ -75,7 +98,7 @@ public class StructureCanvasPane extends StructureBasePane {
     viewPort.set(new ViewPort(getStructure()));
     getViewPort().portWidthProperty().bind(widthProperty());
     getViewPort().portHeightProperty().bind(heightProperty());
-    getViewPort().fit2();
+    getViewPort().fit();
     repaint();
   }
 
@@ -98,10 +121,8 @@ public class StructureCanvasPane extends StructureBasePane {
   private void basicDrawElements(GraphicsContext gc,
                                  Collection<GdsElement> elements) {
     for (GdsElement e : elements) {
-      //gc.setPaint(Color.WHITE);
       drawElement(gc, e);
     }
-
   }
 
   private void drawElement(GraphicsContext g, GdsElement e) {

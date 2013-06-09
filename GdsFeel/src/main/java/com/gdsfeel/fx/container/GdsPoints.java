@@ -23,7 +23,7 @@ import org.apache.commons.lang.Validate;
  */
 public class GdsPoints extends SimpleListProperty<GdsPoint> {
 
-  private SimpleObjectProperty<Rectangle2D> bounds = new SimpleObjectProperty<>(this, "bounds");
+  private SimpleObjectProperty<Rectangle2D> bounds;
 
   public GdsPoints(Object propertyOwner, String propertyName) {
     this(propertyOwner, propertyName, FXCollections.<GdsPoint>observableArrayList());
@@ -44,14 +44,23 @@ public class GdsPoints extends SimpleListProperty<GdsPoint> {
   }
 
   private void handleInvalidate(Observable o) {
+    if (bounds == null) {
+      return;
+    }
     bounds.set(null);
   }
 
   public ReadOnlyObjectProperty<Rectangle2D> boundsProperty() {
+    if (bounds == null) {
+      bounds = new SimpleObjectProperty<>(this, "bounds");
+    }
     return bounds;
   }
 
   public Rectangle2D getBounds() {
+    if (bounds == null) {
+      bounds = new SimpleObjectProperty<>(this, "bounds");
+    }
     if (bounds.get() == null) {
       Rectangle2D r = calcBoundingBox(this);
       bounds.set(r);
@@ -108,12 +117,6 @@ public class GdsPoints extends SimpleListProperty<GdsPoint> {
     Validate.isTrue((xmax - xmin) >= 0, String.format("(%f - %f) >= 0", xmax, xmin));
     Validate.isTrue((ymax - ymin) >= 0, String.format("(%f - %f) >= 0", ymax, ymin));
     return new Rectangle2D(xmin, ymin, xmax - xmin, ymax - ymin);
-  }
-
-  private void asAWTPoints(Collection<java.awt.geom.Point2D> outPoints) {
-    for (GdsPoint p : this) {
-      outPoints.add(p.asSwing());
-    }
   }
 
   /*

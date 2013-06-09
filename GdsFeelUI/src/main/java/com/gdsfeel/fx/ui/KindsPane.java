@@ -31,10 +31,10 @@ public class KindsPane extends StackPane {
   }
 
   private void initialize() {
-    //this.setStyle("-fx-background-color: blue"); 
+    //this.setStyle("-fx-background-color: blue");
     VBox vb = new VBox();
     vb.getChildren().add(new KindAllPane(this));
-    entries = new ArrayList<KindEntryPane>();
+    entries = new ArrayList<>();
     for (Kind k : Kinds.KEYS) {
       Kind.Entry e = Kinds.getInstance().get(k);
       KindEntryPane entryPane = new KindEntryPane(e);

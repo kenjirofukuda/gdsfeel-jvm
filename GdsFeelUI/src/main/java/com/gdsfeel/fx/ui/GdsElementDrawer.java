@@ -29,6 +29,9 @@ public class GdsElementDrawer<T extends GdsElement> {
   protected StructureCanvasPane view;
   private Color frameColor;
   private double[] outlineXY;
+  private double[] xy;
+  private double[] xa;
+  private double[] ya;
 
   public void initWith(GdsElement element, StructureCanvasPane view) {
     this.element = (T) element;
@@ -36,12 +39,10 @@ public class GdsElementDrawer<T extends GdsElement> {
   }
 
   public final void fullDrawOn(GraphicsContext g) {
-    // FIXME:
     drawOn(g);
   }
 
   public void drawOn(GraphicsContext g) {
-    // FIXME:
     g.setStroke(getFrameColor());
     strokeFrameOn(g);
   }
@@ -77,22 +78,29 @@ public class GdsElementDrawer<T extends GdsElement> {
     int allocSize = numPoints * 2;
     if (outlineXY == null) {
       outlineXY = new double[allocSize];
+      xy = new double[allocSize];
+      xa = new double[numPoints];
+      ya = new double[numPoints];
       points.flattenXY(outlineXY);
     }
-    double[] xy = new double[allocSize];
     tx.transform(outlineXY, 0, xy, 0, numPoints);
-    double[] xa = new double[numPoints];
-    double[] ya = new double[numPoints];
     for (int i = 0; i < numPoints; i++) {
       int ai = i * 2;
-      xa[i] = xy[ai];
-      ya[i] = xy[ai + 1];
+      xa[i] = round(xy[ai]);
+      ya[i] = round(xy[ai + 1]);
     }
     g.strokePolyline(xa, ya, numPoints);
   }
 
+  private double round(double v) {
+    // round to integer: Math.floor(v + 0.5)
+    //      stop smooth: LINE_ON_PIXEL;
+    final double LINE_ON_PIXEL = 0.5;
+    return Math.floor(v + 0.5) + LINE_ON_PIXEL;
+  }
+
   protected AffineTransform getViewPortTransform() {
-    return view.getViewPort().getTransform2();
+    return view.getViewPort().getTransform();
   }
 
   static Class<? extends GdsElementDrawer> drawerClassForElement(GdsElement e) {

@@ -23,6 +23,7 @@ public class ShapeHiliter {
     this.shape = shape;
 
     shape.setOnMouseEntered(new EventHandler<MouseEvent>() {
+      @Override
       public void handle(MouseEvent t) {
         strokeColor = shape.getStroke();
         shape.setStroke(Color.WHITE);
@@ -30,6 +31,7 @@ public class ShapeHiliter {
     });
 
     shape.setOnMouseExited(new EventHandler<MouseEvent>() {
+      @Override
       public void handle(MouseEvent t) {
         shape.setStroke(strokeColor);
       }

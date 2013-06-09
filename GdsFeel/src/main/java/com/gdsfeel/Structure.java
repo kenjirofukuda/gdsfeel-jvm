@@ -11,7 +11,6 @@ import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -39,7 +38,7 @@ import org.xml.sax.SAXException;
  *
  * @author kenjiro
  */
-public class Structure extends GdsObject {
+public class Structure extends GdsObject<Library, GdsElement> {
 
   private static Log log = LogFactory.getLog(Structure.class);
   private static String XML_EXT = "gdsfeelbeta";
@@ -103,14 +102,12 @@ public class Structure extends GdsObject {
   }
 
   public GdsElement[] getElementArray() {
-    load();
-    List<GdsObject> list =
-            Arrays.asList(getChildren());
-    return list.toArray(new GdsElement[0]);
+    return getElements().toArray(new GdsElement[0]);
   }
 
   public Collection<GdsElement> getElements() {
-    return Arrays.asList(getElementArray());
+    load();
+    return getChildren();
   }
 
   public boolean hasElement() {
@@ -202,9 +199,6 @@ public class Structure extends GdsObject {
 
   private void forceLoad() {
     removeAllChild();
-//    boolean fxLoading =
-//            System.getProperty("com.gdsfeel.useFxProperty", "false")
-//            .equalsIgnoreCase("true");
     DocumentBuilderFactory df = DocumentBuilderFactory.newInstance();
     try {
       DocumentBuilder b = df.newDocumentBuilder();
@@ -215,12 +209,6 @@ public class Structure extends GdsObject {
       for (int i = 0; i < nl.getLength(); i++) {
         Element e = (Element) nl.item(i);
         GdsElement el = GdsElement.fromXml(e);;
-//        if (fxLoading) {
-//          el = GdsElement.fromXml2(e);
-//        }
-//        else {
-//          el = GdsElement.fromXml(e);
-//        }
         if (el == null) {
           continue;
         }

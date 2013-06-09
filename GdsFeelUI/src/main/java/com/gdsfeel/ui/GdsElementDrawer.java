@@ -27,9 +27,9 @@ public class GdsElementDrawer<T extends GdsElement> {
   private static Log log = LogFactory.getLog(GdsElementDrawer.class);
   protected T element;
   protected StructureView view;
-  private java.awt.Color _frameColor;
-  protected GeneralPath _framePath;
-  private Paint _paint;
+  private java.awt.Color frameColor;
+  protected GeneralPath framePath;
+  private Paint paint;
 
   public void initWith(GdsElement element, StructureView view) {
     this.element = (T) element;
@@ -64,19 +64,19 @@ public class GdsElementDrawer<T extends GdsElement> {
   }
 
   protected boolean canPaint() {
-    return false; // _paint != null;
+    return false; // paint != null;
   }
 
   public java.awt.Color getFrameColor() {
-    if (_frameColor == null) {
-      _frameColor = lookupFrameColor();
+    if (frameColor == null) {
+      frameColor = lookupFrameColor();
     }
-    return _frameColor;
+    return frameColor;
   }
 
   public Paint getPaint() {
     // FIXME:
-    return _paint;
+    return paint;
   }
 
   private java.awt.Color lookupFrameColor() {
@@ -97,25 +97,25 @@ public class GdsElementDrawer<T extends GdsElement> {
 
   // Overridable
   public void paintOn(Graphics2D g) {
-    if (_framePath == null) {
-      _framePath = new GeneralPath();
-      addPoints(_framePath, element.outlinePoints());
+    if (framePath == null) {
+      framePath = new GeneralPath();
+      addPoints(framePath, element.outlinePoints());
     }
-    Shape s = _framePath;
+    Shape s = framePath;
     if (getViewPortTransform() != null) {
-      s = getViewPortTransform().createTransformedShape(_framePath);
+      s = getViewPortTransform().createTransformedShape(framePath);
     }
     g.fill(s);
   }
 
   public void strokePoints(Graphics2D g, java.awt.geom.Point2D[] points, AffineTransform tx) {
-    if (_framePath == null) {
-      _framePath = new GeneralPath();
-      addPoints(_framePath, points);
+    if (framePath == null) {
+      framePath = new GeneralPath();
+      addPoints(framePath, points);
     }
-    Shape s = _framePath;
+    Shape s = framePath;
     if (tx != null) {
-      s = tx.createTransformedShape(_framePath);
+      s = tx.createTransformedShape(framePath);
     }
     g.draw(s);
   }
@@ -190,11 +190,11 @@ class GdsPathDrawer extends GdsElementDrawer<GdsPath> {
   }
 
   private Shape getPathOutlineShape() {
-    if (_framePath == null) {
-      _framePath = new GeneralPath();
-      addPoints(_framePath, element.outlinePoints());
+    if (framePath == null) {
+      framePath = new GeneralPath();
+      addPoints(framePath, element.outlinePoints());
     }
-    return _framePath;
+    return framePath;
   }
 
   private boolean isVisiblePathCenter() {

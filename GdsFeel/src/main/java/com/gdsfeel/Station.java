@@ -12,12 +12,12 @@ import java.util.List;
  *
  * @author kenjiro
  */
-public class Station extends GdsObject {
+public class Station {
 
   private List<Library> _libraries;
   private Library _library;
   private Structure _structure;
-  
+
   public Station() {
     _libraries = new ArrayList<>();
   }
@@ -69,17 +69,16 @@ public class Station extends GdsObject {
     }
     return null;
   }
-  
-  private static final Kind[] DEFAULT_VISIBLE_KINDS = new Kind[] {
+  private static final Kind[] DEFAULT_VISIBLE_KINDS = new Kind[]{
     Kind.BD, Kind.PB
   };
-  
+
   private Kind[] getDefaultVisibleKinds() {
     return DEFAULT_VISIBLE_KINDS;
   }
-  
+
   private void setupDefaultVisibility() {
-    for (Kind k : getDefaultVisibleKinds()) { 
+    for (Kind k : getDefaultVisibleKinds()) {
     }
-  }  
+  }
 }

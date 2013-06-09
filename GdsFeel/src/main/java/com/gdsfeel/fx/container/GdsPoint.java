@@ -10,7 +10,7 @@ import java.awt.geom.Point2D;
  *
  * @author kenjiro
  */
-public class GdsPoint {
+public final class GdsPoint {
 
   private double[] v;
 
@@ -24,19 +24,19 @@ public class GdsPoint {
     return v.length;
   }
 
-  public double getX() {
+  public final double getX() {
     return v[0];
   }
 
-  public double getY() {
+  public final double getY() {
     return v[1];
   }
 
-  public java.awt.geom.Point2D asSwing() {
+  public final java.awt.geom.Point2D asSwing() {
     return new Point2D.Double(getX(), getY());
   }
 
-  public javafx.geometry.Point2D asFX() {
+  public final javafx.geometry.Point2D asFX() {
     return new javafx.geometry.Point2D(getX(), getY());
   }
 
@@ -53,15 +53,15 @@ public class GdsPoint {
   }
 
   @Override
-  public String toString() {
+  public final String toString() {
     return "GP[" + v[0] + "," + v[1] + "]";
   }
 
-  public String toStringFormatted() {
+  public final String toStringFormatted() {
     return String.format("GP[%10.3f, %10.3f]", v[0], v[1]);
   }
 
-  public String toStringFormatted(int index) {
+  public final String toStringFormatted(int index) {
     return String.format("[%3d]GP[%10.3f, %10.3f]", index, v[0], v[1]);
   }
 }

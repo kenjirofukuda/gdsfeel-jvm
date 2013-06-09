@@ -4,9 +4,12 @@
  */
 package com.gdsfeel.fx.ui;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -21,27 +24,41 @@ import org.apache.commons.logging.LogFactory;
 public class GdsFeelApplication extends Application {
 
   private static Log log = LogFactory.getLog(GdsFeelApplication.class);
-  GdsFeelUIPane uiPane;
+//  GdsFeelUIPane uiPane;
+  GdsFeelUIPaneController uiPaneController;
 
   @Override
   public void start(Stage primaryStage) {
 
-    uiPane = new GdsFeelUIPane();
-    uiPane.init();
+//    uiPane = new GdsFeelUIPane();
+//    uiPane.init();
+    FXMLLoader loader =
+            new FXMLLoader(getClass().getResource("GdsFeelUIPane.fxml"));
+    Parent parent = null;
+    try {
+      parent = (Parent) loader.load();
+    }
+    catch (IOException ex) {
+      log.error(ex);
+    }
+    uiPaneController =
+            (GdsFeelUIPaneController) loader.getController();
+    uiPaneController.init();
     Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 
-    Scene scene = new Scene(uiPane,
+    Scene scene = new Scene(parent,
                             primaryScreenBounds.getWidth() * 0.8,
                             primaryScreenBounds.getHeight() * 0.8);
 
     primaryStage.setTitle("GdsFeel");
     primaryStage.setScene(scene);
     primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+      @Override
       public void handle(WindowEvent t) {
-        uiPane.confirmQuit(t);
+        uiPaneController.confirmQuit(t);
       }
     });
-    primaryStage.titleProperty().bind(uiPane.titleProperty());
+    primaryStage.titleProperty().bind(uiPaneController.titleProperty());
     primaryStage.show();
   }
 
@@ -55,7 +72,7 @@ public class GdsFeelApplication extends Application {
   @Override
   public void stop() throws Exception {
     log.debug("Application stop");
-    uiPane.stop();
+    uiPaneController.stop();
   }
 
   /**

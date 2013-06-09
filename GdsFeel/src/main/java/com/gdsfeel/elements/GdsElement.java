@@ -28,7 +28,7 @@ import org.w3c.dom.NodeList;
  *
  * @author kenjiro
  */
-public class GdsElement extends GdsObject {
+public class GdsElement extends GdsObject<Structure, GdsObject> {
 
   private static Log log = LogFactory.getLog(GdsElement.class);
   private Point2D[] _vertices;
@@ -47,7 +47,7 @@ public class GdsElement extends GdsObject {
   }
 
   public Structure getStructure() {
-    return (Structure) getParent();
+    return getParent();
   }
 
   public Library getLibrary() {

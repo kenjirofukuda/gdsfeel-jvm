@@ -9,8 +9,6 @@ import com.gdsfeel.Station;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -94,7 +92,7 @@ public class GdsFeelUIPane extends StackPane {
     splitPane = new SplitPane();
     border.setCenter(splitPane);
     getChildren().add(border);
-    addLeftBorderPane();
+//   addLeftBorderPane();
     addMenuBar();
     addSplitPane();
   }
@@ -151,7 +149,7 @@ public class GdsFeelUIPane extends StackPane {
     }
     catch (IOException ex) {
       itemStage = null;
-      Logger.getLogger(GdsFeelUIPane.class.getName()).log(Level.SEVERE, null, ex);
+      log.error(ex);
     }
     return stage;
   }
@@ -172,7 +170,7 @@ public class GdsFeelUIPane extends StackPane {
     VBox.setVgrow(structurePane, Priority.ALWAYS);
     structureArea.getChildren().addAll(viewControls, structurePane);
     splitPane.getItems().addAll(createBrowserView(), structureArea);
-    splitPane.setDividerPositions(0.3f);
+    //splitPane.setDividerPositions(0.3f);
   }
 
   private HBox createViewControls() {
