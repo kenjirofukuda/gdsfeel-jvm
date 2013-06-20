@@ -108,7 +108,8 @@ public class GdsElementDrawer<T extends GdsElement> {
     g.fill(s);
   }
 
-  public void strokePoints(Graphics2D g, java.awt.geom.Point2D[] points, AffineTransform tx) {
+  public void strokePoints(Graphics2D g, java.awt.geom.Point2D[] points,
+                           AffineTransform tx) {
     if (framePath == null) {
       framePath = new GeneralPath();
       addPoints(framePath, points);

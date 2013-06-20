@@ -35,6 +35,7 @@ public class StructureView extends JPanel
   private static Log log = LogFactory.getLog(StructureView.class);
   private ViewPort viewPort;
   private Structure structure;
+  private String drawerKey;
 
   public StructureView() {
     super();
@@ -52,11 +53,9 @@ public class StructureView extends JPanel
     addComponentListener(this);
     addMouseWheelListener(this);
     addMouseMotionListener(this);
+    drawerKey = structure.getKeyName() + ".drawer";
     this.structure.load();
     viewPort = new ViewPort(structure);
-    viewPort.setPortSize(getSize());
-    viewPort.fit();
-    this.repaint();
   }
 
   public ViewPort getViewPort() {
@@ -90,13 +89,15 @@ public class StructureView extends JPanel
   }
 
   private void drawElement(Graphics2D g, GdsElement e) {
-    GdsElementDrawer drawer = (GdsElementDrawer) e.getRuntimeProperty("drawer");
+    GdsElementDrawer drawer = (GdsElementDrawer) e.getRuntimeProperty(drawerKey);
     if (drawer == null) {
-      Class<? extends GdsElementDrawer> drawerClass = GdsElementDrawer.drawerClassForElement(e);
+      Class<? extends GdsElementDrawer> drawerClass = GdsElementDrawer.
+              drawerClassForElement(
+              e);
       try {
         drawer = drawerClass.newInstance();
         drawer.initWith(e, this);
-        e.setRuntimeProperty("drawer", drawer);
+        e.setRuntimeProperty(drawerKey, drawer);
       }
       catch (InstantiationException | IllegalAccessException ex) {
         log.error(ex);

@@ -44,7 +44,8 @@ public class StructureCanvasPane extends StructureBasePane {
     canvas.heightProperty().bind(this.heightProperty());
     ChangeListener<Number> cl = new ChangeListener<Number>() {
       @Override
-      public void changed(ObservableValue<? extends Number> ov, Number t, Number t1) {
+      public void changed(ObservableValue<? extends Number> ov,
+                          Number t, Number t1) {
         log.debug("ov = " + ov);
         log.debug("oldValue = " + t);
         log.debug("newValue = " + t);
@@ -57,20 +58,26 @@ public class StructureCanvasPane extends StructureBasePane {
     this.setOnScroll(new EventHandler<ScrollEvent>() {
       @Override
       public void handle(ScrollEvent event) {
-        double zoomBase = 1.0;
-        double zoomUnit = 0.02;
-        try {
-          AffineTransform tx = getViewPort().getTransform().createInverse();
-          Point2D p = tx.transform(new Point2D.Double(event.getX(), event.getY()), null);
-          getViewPort().setCenter(p.getX(), p.getY());
-          getViewPort().setPortCenter(event.getX(), event.getY());
-          getViewPort().zoom(zoomBase + (zoomUnit * event.getDeltaY()));
-          repaint();
-        }
-        catch (NoninvertibleTransformException ex) {
-        }
+        handleScrollEvent(event);
       }
     });
+  }
+
+  private void handleScrollEvent(ScrollEvent event) {
+    double zoomBase = 1.0;
+    double zoomUnit = 0.02;
+    try {
+      AffineTransform tx = getViewPort().getTransform().createInverse();
+      Point2D p = tx.transform(new Point2D.Double(event.getX(), event.getY()),
+                               null);
+      getViewPort().setCenter(p.getX(), p.getY());
+      getViewPort().setPortCenter(event.getX(), event.getY());
+      getViewPort().zoom(zoomBase + (zoomUnit * event.getDeltaY()));
+      repaint();
+    }
+    catch (NoninvertibleTransformException ex) {
+      log.error(ex);
+    }
   }
 
   public ViewPort getViewPort() {
@@ -79,6 +86,8 @@ public class StructureCanvasPane extends StructureBasePane {
 
   private void handlePaneResized() {
     if (getViewPort() != null) {
+//    // if use non fx version ViewPort set port size manually.
+//      getViewPort().setPortSize(getWidth(), getHeight());
       getViewPort().fit();
     }
     repaint();
@@ -98,10 +107,22 @@ public class StructureCanvasPane extends StructureBasePane {
     viewPort.set(new ViewPort(getStructure()));
     getViewPort().portWidthProperty().bind(widthProperty());
     getViewPort().portHeightProperty().bind(heightProperty());
+//    // if use non fx version ViewPort set port size manually.
+//    getViewPort().setPortSize(getWidth(), getHeight());
     getViewPort().fit();
     repaint();
   }
 
+//  // if use non fx version ViewPort set port size manually.
+//  private void fit() {
+//    getViewPort().resetPortCenter();
+//    Rectangle2D r = structure.get().getBoundingBox2();
+//    getViewPort().setBounds(r.getMinX(), r.getMinY(),
+//                            r.getWidth(), r.getHeight());
+//  }
+  /**
+   *
+   */
   private void repaint() {
     GraphicsContext g = canvas.getGraphicsContext2D();
     g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -128,7 +149,8 @@ public class StructureCanvasPane extends StructureBasePane {
   private void drawElement(GraphicsContext g, GdsElement e) {
     GdsElementDrawer drawer = (GdsElementDrawer) e.getRuntimeProperty("drawer");
     if (drawer == null) {
-      Class<? extends GdsElementDrawer> drawerClass = GdsElementDrawer.drawerClassForElement(e);
+      Class<? extends GdsElementDrawer> drawerClass =
+              GdsElementDrawer.drawerClassForElement(e);
       try {
         drawer = drawerClass.newInstance();
         drawer.initWith(e, this);

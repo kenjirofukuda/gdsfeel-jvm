@@ -77,7 +77,8 @@ public class ViewPort {
   private void installDamageHandler(DoubleProperty dp) {
     dp.addListener(new ChangeListener<Number>() {
       @Override
-      public void changed(ObservableValue<? extends Number> ov, Number t, Number t1) {
+      public void changed(ObservableValue<? extends Number> ov, Number t,
+                          Number t1) {
         log.debug("ov = " + ov);
         log.debug("oldValue = " + t);
         log.debug("newValue = " + t);
@@ -89,7 +90,8 @@ public class ViewPort {
   private void installPortSizeChangeHandler(DoubleProperty dp) {
     dp.addListener(new ChangeListener<Number>() {
       @Override
-      public void changed(ObservableValue<? extends Number> ov, Number t, Number t1) {
+      public void changed(ObservableValue<? extends Number> ov, Number t,
+                          Number t1) {
         log.debug("ov = " + ov);
         log.debug("oldValue = " + t);
         log.debug("newValue = " + t);
@@ -107,7 +109,7 @@ public class ViewPort {
 
   public void setPortCenter(double x, double y) {
     portCenterX.set(x);
-    portCenterY.set(portHeight.get() - y);
+    portCenterY.set(y);
   }
 
   public void resetPortCenter() {
@@ -129,7 +131,8 @@ public class ViewPort {
       return;
     }
     if (newScale <= 0.001) {
-      log.error(String.format("newScale is %f convert to safe margin value ==> 0.001", newScale));
+      log.error(String.format(
+              "newScale is %f convert to safe margin value ==> 0.001", newScale));
       newScale = 0.001;
     }
     scale.set(newScale);
@@ -154,16 +157,19 @@ public class ViewPort {
   }
 
   public Rectangle2D getBounds() {
-    Rectangle2D deviceBounds = new Rectangle2D(0, 0, portWidth.get(), portHeight.get());
+    Rectangle2D deviceBounds = new Rectangle2D(0, 0, portWidth.get(),
+                                               portHeight.get());
     Rectangle2D worldBounds = Rectangle2D.EMPTY;
 
     AffineTransform inverseTx;
     try {
       inverseTx = getTransform().createInverse();
       java.awt.geom.Point2D min = inverseTx.transform(
-              new java.awt.geom.Point2D.Double(deviceBounds.getMinX(), deviceBounds.getMinY()), null);
+              new java.awt.geom.Point2D.Double(deviceBounds.getMinX(),
+                                               deviceBounds.getMinY()), null);
       java.awt.geom.Point2D max = inverseTx.transform(
-              new java.awt.geom.Point2D.Double(deviceBounds.getMaxX(), deviceBounds.getMaxY()), null);
+              new java.awt.geom.Point2D.Double(deviceBounds.getMaxX(),
+                                               deviceBounds.getMaxY()), null);
       worldBounds = Rectangle2DBuilder.create().minX(min.getX()).minY(min.getY())
               .width(max.getX() - min.getX()).height(max.getY() - min.getY()).build();
     }
@@ -247,7 +253,7 @@ public class ViewPort {
 
   private AffineTransform toCenterTransform() {
     AffineTransform tx = new AffineTransform();
-    tx.translate(portCenterX.get(), portCenterY.get());
+    tx.translate(portCenterX.get(), portHeight.get() - portCenterY.get());
     return tx;
   }
 

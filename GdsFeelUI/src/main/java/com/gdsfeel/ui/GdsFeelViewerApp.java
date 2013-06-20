@@ -14,7 +14,9 @@ import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
 /**
- * The main class of the application.
+ * JSR-296 based Swing Application entry point class
+ *
+ * @deprecated use NeBeans platform based implementation GdsApp
  */
 public class GdsFeelViewerApp extends SingleFrameApplication {
 
@@ -45,25 +47,23 @@ public class GdsFeelViewerApp extends SingleFrameApplication {
     return Application.getInstance(GdsFeelViewerApp.class);
   }
 
-
   private static void turnSystemLook() {
     try {
       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
     }
     catch (ClassNotFoundException ex) {
-     log.warn(ex);
+      log.warn(ex);
     }
     catch (InstantiationException ex) {
-     log.warn(ex);
+      log.warn(ex);
     }
     catch (IllegalAccessException ex) {
-     log.warn(ex);
+      log.warn(ex);
     }
     catch (UnsupportedLookAndFeelException ex) {
-     log.warn(ex);
+      log.warn(ex);
     }
   }
-
 
   private static File waitUntilSelectGdsFolder() {
     JFileChooser chooser = new JFileChooser();
@@ -86,7 +86,6 @@ public class GdsFeelViewerApp extends SingleFrameApplication {
     return chooser.getSelectedFile();
   }
 
-
   private static void resetGdsFolder() {
     File gdsfeelFolder = waitUntilSelectGdsFolder();
     if (gdsfeelFolder == null) {
@@ -94,7 +93,7 @@ public class GdsFeelViewerApp extends SingleFrameApplication {
     }
     Config.setProjectFolder(gdsfeelFolder);
   }
-  
+
   /**
    * Main method launching the application.
    */
@@ -103,10 +102,9 @@ public class GdsFeelViewerApp extends SingleFrameApplication {
     if (Config.pathToSmalltalkProject().isEmpty()) {
       resetGdsFolder();
     }
-    if (! Config.getProjectFolder().isDirectory()) {
+    if (!Config.getProjectFolder().isDirectory()) {
       resetGdsFolder();
     }
     launch(GdsFeelViewerApp.class, args);
   }
-  
 }

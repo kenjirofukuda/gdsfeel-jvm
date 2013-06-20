@@ -40,7 +40,8 @@ public class StructureSceneGraphPane extends StructureBasePane {
     super();
     viewScale.addListener(new ChangeListener<Number>() {
       @Override
-      public void changed(ObservableValue<? extends Number> ov, Number t, Number t1) {
+      public void changed(ObservableValue<? extends Number> ov, Number t,
+                          Number t1) {
         if (getActiveGroup() != null && t1 != null) {
           getActiveGroup().setScaleX(t1.doubleValue());
           getActiveGroup().setScaleY(t1.doubleValue());
@@ -117,7 +118,8 @@ public class StructureSceneGraphPane extends StructureBasePane {
     result.setFill(fillColor);
     result.setStroke(frameColor);
     result.setSmooth(false);
-    result.setStrokeWidth(0.1);
+    result.setStrokeWidth(1.0);
+
     return result;
   }
 
